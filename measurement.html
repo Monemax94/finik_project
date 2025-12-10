@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Measurement & Charges Policy — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* HEADER EFFECT */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 25px;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(6px);
+  transition:all .35s ease;
+}
+
+.site-header.scrolled{
+  background:#ffffff;
+  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* LOGO DESIGN */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo img{
+  height:90px;
+}
+
+.logo span{
+  font-size:32px;
+  font-weight:900;
+  color:#000;
+  text-shadow:1px 1px rgba(0,0,0,0.15);
+}
+
+/* NAVIGATION LINKS */
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  font-weight:600;
+  color:#000;
+  padding:8px 10px;
+  text-decoration:none;
+  transition:.3s ease;
+}
+
+.nav-links a:hover{
+  transform:scale(1.05);
+  color:#c19702;
+}
+
+.nav-links a.active{
+  color:#c19702;
+  border-bottom:3px solid #c19702;
+}
+
+/* QUOTE BUTTON */
+.btn-quote{
+  background:#c19702;
+  border-radius:4px;
+  padding:8px 14px !important;
+  color:#fff !important;
+}
+
+.btn-quote:hover{
+  background:#000 !important;
+  color:#fff !important;
+}
+
+/* MOBILE NAV */
+.menu-toggle{
+  display:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .logo span{
+    font-size:24px;
+  }
+
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    width:220px;
+    position:absolute;
+    right:0;
+    top:100%;
+    background:#fff;
+    padding:12px 0;
+    border-top:3px solid #c19702;
+  }
+
+  .nav-links.open{
+    display:block;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="quote.html" class="btn-quote">Request Quote</a>
+  </nav>
+
+</header>
+
+
+<section class="hero-small">
+  <h1>Measurement & Charges Policy</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDE -->
+  <aside class="side-box">
+    <h3>Before Installation</h3>
+    <ul class="side-links">
+      <li><a href="site-preparation.html">Site Checklist</a></li>
+      <li><a href="installation.html">Installation Requirements</a></li>
+      <li><a href="responsibility.html">Customer Responsibilities</a></li>
+    </ul>
+
+    <h3>Legal Pages</h3>
+    <ul class="side-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- CENTER MAIN CONTENT -->
+  <article class="center-box">
+
+    <h2>Measurement Policy Overview</h2>
+    <p>
+      Accurate on-site measurements determine fabrication cutting sizes, fitting alignment,
+      material cost and installation plan. Measurements are done after visible finishing work.
+    </p>
+
+    <h2>1. Site Measurement Requirements</h2>
+    <ul>
+      <li>Floor tiles must be fully installed and leveled.</li>
+      <li>Stair edges must be straight and plastered.</li>
+      <li>Main wall finishing must be completed.</li>
+      <li>Measurement should not be taken during ongoing structural changes.</li>
+    </ul>
+
+    <h2>2. On-site Measurement Charges</h2>
+    <ul>
+      <li>Within Lagos and Asaba city — free measurement.</li>
+      <li>Outside city — transportation applies depending on mileage.</li>
+      <li>Additional visit caused by incomplete site — attracts extra cost.</li>
+    </ul>
+
+    <h2>3. Cost Determination Factors</h2>
+    <ul>
+      <li>Actual stainless length measured (meter basis).</li>
+      <li>Height, turning angles, joints and bends.</li>
+      <li>Accessories used — rods, bars, clamps, holders, corners etc.</li>
+      <li>Steel grade: 304 or 316 stainless.</li>
+      <li>Complexity of installation location.</li>
+    </ul>
+
+    <h2>4. When Fresh Measurement is Required</h2>
+    <ul>
+      <li>Height of tiles or edges changed.</li>
+      <li>Walls rebuilt or extended after initial measurement.</li>
+      <li>Stairs reshaped or recast.</li>
+      <li>New dimensions differ from original record.</li>
+    </ul>
+
+    <p><strong>Any change after fabrication begins leads to price adjustments.</strong></p>
+
+    <h2>5. Final Measurement Confirmation</h2>
+    <ul>
+      <li>Customer must confirm final sizes verbally or via invoice.</li>
+      <li>Payment is based on validated measurement.</li>
+      <li>Fabrication begins only after appropriate deposit is received.</li>
+    </ul>
+
+  </article>
+
+
+  <!-- RIGHT SIDE -->
+  <aside class="side-box">
+
+    <h3>Need Assistance?</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+
+    <a href="quote.html" class="side-btn">Request Quote Now →</a>
+
+    <h3>Preview Work</h3>
+    <ul class="side-links">
+      <li><a href="gallery.html">View Gallery</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="index.html">Company Overview</a></li>
+    </ul>
+
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+
+<script src="assets/js/main.js"></script>
+
+<script>
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+window.addEventListener("scroll", ()=>{
+  const header = document.querySelector(".site-header");
+  if(window.scrollY > 30){
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+</script>
+
+</body>
+</html>

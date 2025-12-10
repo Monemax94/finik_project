@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Request Quote — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+/* Only form styling here – header & layout handled by global CSS */
+
+.quote-form-modern{
+  padding:18px;
+  background:#fafafa;
+  border-radius:12px;
+  border:1px solid #ddd;
+  margin-top:10px;
+}
+
+.quote-form-modern input,
+.quote-form-modern textarea,
+.quote-form-modern select{
+  width:100%;
+  padding:12px;
+  border-radius:6px;
+  border:1px solid #bbb;
+  margin-bottom:12px;
+  font-size:15px;
+}
+
+.quote-form-modern textarea{
+  resize:vertical;
+}
+
+.form-btn-modern{
+  background:#c19702;
+  color:#fff;
+  padding:12px 22px;
+  width:100%;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.form-btn-modern:hover{
+  background:#000;
+}
+</style>
+
+</head>
+<body>
+
+<!-- HEADER (same as others, styling from style.css) -->
+<header class="site-header">
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="quote.html" class="btn-quote active">Request Quote</a>
+  </nav>
+</header>
+
+
+<section class="hero-small">
+  <h1>Request Project Quote</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Guidelines</h3>
+    <ul class="side-links">
+      <li><a href="installation.html">Installation Rules</a></li>
+      <li><a href="measurement.html">Measurement Policy</a></li>
+      <li><a href="site-preparation.html">Site Checklist</a></li>
+    </ul>
+
+    <h3>Legal Pages</h3>
+    <ul class="side-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- CENTER MAIN -->
+  <article class="center-box">
+
+    <p class="text-block">
+      Please fill the form below with accurate details. We will review your request and respond with
+      costing, measurement schedule and installation timeline.
+    </p>
+
+    <form onsubmit="submitQuote();return false;" class="quote-form-modern">
+
+      <input id="q_name" type="text" placeholder="Full Name" required>
+
+      <input id="q_phone" type="tel" placeholder="Phone Number" required>
+
+      <input id="q_location" type="text" placeholder="Project Address / Location" required>
+
+      <select id="q_type" required>
+        <option value="">Select Work Type</option>
+        <option>Stainless Handrail Installation</option>
+        <option>Balcony Railing</option>
+        <option>Staircase Railing</option>
+        <option>Stainless Gate</option>
+        <option>Stainless Door / Frame</option>
+        <option>Custom Fabrication</option>
+      </select>
+
+      <textarea id="q_message" placeholder="Describe measurement, length, structure and any special note..." rows="5"></textarea>
+
+      <label style="font-weight:bold;">Attach Reference Image (Optional)</label>
+      <input id="q_image" type="file" accept="image/*">
+
+      <button class="form-btn-modern">Submit Quote Request</button>
+
+    </form>
+
+  </article>
+
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Quick Contact</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+
+    <a href="view-quotes.html" class="side-btn">View Submitted Quotes →</a>
+
+    <h3>You May Also Need</h3>
+    <ul class="side-links">
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="gallery.html">Project Samples</a></li>
+      <li><a href="index.html">Back to Home</a></li>
+    </ul>
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited.</p>
+</footer>
+
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+<script src="assets/js/main.js"></script>
+
+<script>
+function submitQuote(){
+  const name      = document.getElementById("q_name").value;
+  const phone     = document.getElementById("q_phone").value;
+  const location  = document.getElementById("q_location").value;
+  const type      = document.getElementById("q_type").value;
+  const message   = document.getElementById("q_message").value;
+  const fileInput = document.getElementById("q_image");
+  const file      = fileInput.files[0];
+
+  function saveRecord(imageData){
+    const record = {
+      name,
+      phone,
+      location,
+      type,
+      message,
+      image: imageData || "",          // match view-quotes.html (q.image)
+      vatRate: 7.5,                    // reserved for future costing
+      items: [
+        { label: "Materials Supply",   cost: 120000 },
+        { label: "Workmanship Labour", cost: 45000 },
+        { label: "Fixing Accessories", cost: 20000 }
+      ],
+      date: new Date().toLocaleString()
+    };
+
+    let allQuotes = JSON.parse(localStorage.getItem("quote_records") || "[]");
+    allQuotes.push(record);
+    localStorage.setItem("quote_records", JSON.stringify(allQuotes));
+
+    alert("Quote submitted successfully!");
+    window.location = "view-quotes.html";
+  }
+
+  if (file){
+    const reader = new FileReader();
+    reader.onload = e => saveRecord(e.target.result);
+    reader.readAsDataURL(file);
+  } else {
+    saveRecord("");
+  }
+}
+</script>
+
+</body>
+</html>

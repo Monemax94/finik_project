@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gallery — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* HEADER EFFECT */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 25px;
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(6px);
+  transition:all .4s ease;
+}
+
+.site-header.scrolled{
+  background:#ffffff;
+  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+}
+
+
+/* LOGO LEFT */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  height:88px;
+  width:auto;
+}
+
+.logo span{
+  font-size:30px;
+  font-weight:900;
+  color:#000;
+  text-shadow:1px 1px rgba(0,0,0,0.15);
+}
+
+
+/* NAVIGATION MENU */
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  font-weight:600;
+  padding:8px 10px;
+  text-decoration:none;
+  transition:all .3s;
+  color:#000;
+}
+
+.nav-links a:hover{
+  transform:scale(1.05);
+  color:#c19702;
+}
+
+/* Active Page */
+.nav-links a.active{
+  border-bottom:3px solid #c19702;
+  color:#c19702;
+}
+
+/* QUOTE BUTTON */
+.btn-quote{
+  background:#c19702;
+  border-radius:4px;
+  color:#fff !important;
+  padding:8px 14px !important;
+}
+
+.btn-quote:hover{
+  background:#000 !important;
+  color:#fff !important;
+}
+
+
+/* MOBILE MENU */
+.menu-toggle{
+  display:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .logo span{
+    font-size:21px;
+  }
+
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    background:white;
+    position:absolute;
+    right:0;
+    top:100%;
+    border-top:2px solid #c19702;
+    padding:15px;
+    width:210px;
+  }
+
+  .nav-links.open{
+    display:block;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+
+/* GALLERY GRID IMPROVED */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:12px;
+  margin-top:15px;
+}
+
+.gallery-grid img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:4px;
+  cursor:pointer;
+  border:1px solid #ddd;
+  transition:all .3s ease;
+}
+
+.gallery-grid img:hover{
+  transform:scale(1.05);
+  border-color:#c19702;
+}
+
+/* LIGHTBOX */
+.lightbox-container{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+}
+
+.lightbox-container img{
+  width:70%;
+  max-height:85vh;
+  object-fit:contain;
+  border-radius:6px;
+  border:4px solid #fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+  
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="quote.html" class="btn-quote">Request Quote</a>
+  </nav>
+
+</header>
+
+
+<section class="hero-small">
+  <h1>Project Gallery</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Browse Policies</h3>
+    <ul class="side-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+    </ul>
+
+    <h3>Preparation Guides</h3>
+    <ul class="side-links">
+      <li><a href="installation.html">Installation Rules</a></li>
+      <li><a href="measurement.html">Measurement Policy</a></li>
+      <li><a href="site-preparation.html">Site Checklist</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- MAIN CENTER -->
+  <article class="center-box">
+
+    <section>
+      <h2>Completed Installations</h2>
+
+<p class="text-block">
+  Explore a collection of completed stainless steel projects executed for residential, commercial
+  and institutional clients nationwide. Our installations reflect accuracy in measurement, quality
+  welding techniques and polished finishing that enhances structural and visual appeal.
+</p>
+
+<p class="text-block">
+  These executed projects include staircase rail systems, reinforced balcony safety frames, stainless
+  entrance gates, custom partition structures, and specialty fabricated components produced to meet
+  specific architectural layouts. Each installation demonstrates our commitment to safety, neat execution,
+  and long-lasting performance.
+</p>
+
+<p class="text-block">
+  Our project installations serve as visible proof of our capability, craftsmanship and technical expertise.
+  Clients can reference these samples to estimate design style, installation scope and finishing quality when
+  planning their own stainless construction. Every job stands as a representation of our brand discipline, 
+  quality workmanship and attention to detail.
+</p>
+
+    </section>
+
+
+    <section class="gallery-grid">
+
+      <!-- All photos maintained -->
+	  <div class="g-item"><img src="assets/images/gallery/g1.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g2.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g3.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g4.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g5.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g6.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g7.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g8.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g9.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g10.jpg" onclick="openLight(this.src)"></div>
+	  <div class="g-item"><img src="assets/images/gallery/g11.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g12.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g13.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g14.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g15.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g16.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g17.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g18.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g19.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g20.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g21.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g22.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g23.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g24.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g25.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g26.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g27.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g29.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g30.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g31.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g32.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g33.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g34.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g35.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g36.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g37.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g38.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g39.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g40.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g41.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g42.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g43.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g44.jpg" onclick="openLight(this.src)"></div>
+	  <div class="g-item"><img src="assets/images/gallery/g45.jpg" onclick="openLight(this.src)"></div>
+	  <div class="g-item"><img src="assets/images/gallery/g46.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g47.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g48.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g49.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g50.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g51.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g52.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g53.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g54.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g55.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g56.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g57.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g58.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g59.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g60.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g61.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g62.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g63.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g64.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g65.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g66.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g67.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g68.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g69.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g70.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g71.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g72.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g73.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g74.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g75.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g76.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g77.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g78.jpg" onclick="openLight(this.src)"></div>
+	  <div class="g-item"><img src="assets/images/gallery/g79.jpg" onclick="openLight(this.src)"></div>
+	  <div class="g-item"><img src="assets/images/gallery/g80.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g81.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g82.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g83.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g84.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g85.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g86.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g87.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g88.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g89.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g90.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g91.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g92.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g93.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g94.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g95.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g96.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g97.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g98.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g99.jpg" onclick="openLight(this.src)"></div>
+      <div class="g-item"><img src="assets/images/gallery/g100.jpg" onclick="openLight(this.src)"></div>
+      
+    </section>
+
+
+    <section>
+      <p style="text-align:center;margin-top:20px;">
+        <a href="quote.html" class="cta-btn">Request Quote for Similar Work</a>
+      </p>
+    </section>
+
+  </article>
+
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Contact Support</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+
+    <a href="quote.html" class="side-btn">Request Quote →</a>
+
+    <h3>Other Sections</h3>
+    <ul class="side-links">
+      <li><a href="services.html">See Full Services</a></li>
+      <li><a href="installation.html">Installation Guide</a></li>
+      <li><a href="measurement.html">Measurement Rules</a></li>
+    </ul>
+  </aside>
+
+</section>
+
+
+<!-- LIGHTBOX -->
+<div id="lightBox" class="lightbox-container" onclick="closeLight()">
+  <img id="lightImg">
+</div>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+<script src="assets/js/main.js"></script>
+
+<script>
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function openLight(src){
+  document.getElementById("lightImg").src = src;
+  document.getElementById("lightBox").style.display = "flex";
+}
+
+function closeLight(){
+  document.getElementById("lightBox").style.display = "none";
+}
+
+window.addEventListener("scroll", ()=>{
+  const header = document.querySelector(".site-header");
+  if(window.scrollY > 25){
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contact Us — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* HEADER EFFECT */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 25px;
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(6px);
+  transition:all .4s ease;
+}
+
+.site-header.scrolled{
+  background:#ffffff;
+  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+}
+
+
+/* LOGO LEFT SECTION */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo img{
+  height:90px;
+  width:auto;
+}
+
+.logo span{
+  font-size:30px;
+  font-weight:900;
+  color:#000;
+  text-shadow:1px 1px rgba(0,0,0,0.18);
+}
+
+
+/* NAVIGATION */
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 10px;
+  transition:all .3s ease;
+  color:#000;
+}
+
+.nav-links a:hover{
+  transform:scale(1.05);
+  color:#c19702;
+}
+
+.nav-links a.active{
+  border-bottom:3px solid #c19702;
+  color:#c19702;
+}
+
+/* REQUEST CTA */
+.btn-quote{
+  background:#c19702;
+  border-radius:4px;
+  color:#fff !important;
+  padding:8px 14px !important;
+}
+
+.btn-quote:hover{
+  background:#000 !important;
+  color:#fff !important;
+}
+
+
+/* MENU TOGGLE (MOBILE) */
+.menu-toggle{
+  display:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .logo span{
+    font-size:21px;
+  }
+
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    background:white;
+    border-top:2px solid #c19702;
+    position:absolute;
+    right:0;
+    top:100%;
+    width:220px;
+    padding:10px 0;
+  }
+
+  .nav-links.open{
+    display:block;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+
+/* FORM STYLING */
+.contact-form-modern{
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  background:#fafafa;
+}
+
+.contact-form-modern input,
+.contact-form-modern textarea{
+  width:100%;
+  padding:12px;
+  border-radius:6px;
+  font-size:15px;
+  border:1px solid #bbb;
+  margin-bottom:12px;
+}
+
+.contact-form-modern textarea{
+  resize:none;
+}
+
+.form-btn-modern{
+  background:#c19702;
+  color:#fff;
+  padding:12px 18px;
+  font-weight:bold;
+  border-radius:6px;
+  cursor:pointer;
+  border:none;
+}
+
+.form-btn-modern:hover{
+  background:#000;
+  color:#fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="quote.html" class="btn-quote">Request Quote</a>
+  </nav>
+
+</header>
+
+
+<section class="hero-small">
+  <h1>Contact Us</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Information Links</h3>
+    <ul class="side-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+    </ul>
+
+    <h3>Before Installation</h3>
+    <ul class="side-links">
+      <li><a href="installation.html">Installation Rules</a></li>
+      <li><a href="measurement.html">Measurement Policy</a></li>
+      <li><a href="site-preparation.html">Site Checklist</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <article class="center-box">
+
+    <section>
+      <h2>Reach Us Easily</h2>
+
+      <p><strong>Head Office:</strong><br>
+      235, Ikotun Road, Lagos.</p>
+
+      <p><strong>Phone:</strong><br>
+      08028587310, 08064736155</p>
+
+      <p><strong>Branch Office:</strong><br>
+      No. 1 Ambrose Okakwu Street, Off DLA Road,<br>
+      Asaba — Delta State.</p>
+
+      <p><strong>Email:</strong><br>
+      support@finickyfixture.com (placeholder)</p>
+
+      <p>
+        We respond faster via WhatsApp for quotations, images, measurement scheduling and project inspections.
+      </p>
+
+      <p style="margin-top:15px;">
+        <a href="https://wa.me/2348028587310" class="cta-btn">Chat on WhatsApp</a>
+      </p>
+
+    </section>
+
+
+    <section style="margin-top:25px;">
+      <h2>Send Us a Message</h2>
+
+      <form class="contact-form-modern" action="#" method="post" onsubmit="alert('Message Submitted Successfully');return false;">
+
+        <input type="text" placeholder="Full Name" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="email" placeholder="Email Address (Optional)">
+
+        <textarea rows="5" placeholder="Describe your request or project..." required></textarea>
+
+        <button type="submit" class="form-btn-modern">Send Message</button>
+
+      </form>
+
+    </section>
+
+  </article>
+
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Contact Channels</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+
+    <a href="quote.html" class="side-btn">Request Quote →</a>
+
+    <h3>You May Also Need</h3>
+    <ul class="side-links">
+      <li><a href="refund.html">Refund Policy</a></li>
+      <li><a href="privacy.html">Data Usage Policy</a></li>
+      <li><a href="installation.html">Installation Requirements</a></li>
+    </ul>
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+
+<script src="assets/js/main.js"></script>
+
+<script>
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+window.addEventListener("scroll", ()=>{
+  const header = document.querySelector(".site-header");
+  if(window.scrollY > 25){
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+</script>
+
+</body>
+</html>

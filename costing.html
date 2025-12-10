@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Costing & Quotation — Finicky Fixture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+.cost-block{
+  border:1px solid #ccc;
+  padding:15px;
+  border-radius:6px;
+  margin-bottom:15px;
+  background:#fafafa;
+}
+
+.cost-block h3{
+  margin-top:0;
+  font-size:18px;
+  border-bottom:1px solid #ddd;
+  padding-bottom:6px;
+}
+
+.result-card{
+  background:#fff;
+  border:1px solid #bbb;
+  border-radius:8px;
+  padding:15px;
+  margin-top:20px;
+}
+
+.total-display{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:12px;
+  color:#000;
+}
+
+input, select{
+  padding:10px;
+  width:100%;
+  margin-bottom:15px;
+  border:1px solid #bbb;
+  border-radius:6px;
+}
+
+.table-style{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+.table-style th, .table-style td{
+  border:1px solid #ddd;
+  padding:8px;
+  font-size:14px;
+  text-align:center;
+}
+
+.table-style th{
+  background:#eee;
+}
+
+.invoice-header{
+  margin-bottom:20px;
+  margin-top:15px;
+  border-bottom:2px solid #333;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.invoice-title{
+  text-align:right;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.invoice-title small{
+  font-size:13px;
+}
+
+.details-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:15px;
+}
+
+.work-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:15px;
+}
+
+.add-btn{
+  background:#111 !important;
+  color:#fff;
+}
+
+.print-btn{
+  width:100%;
+  margin-top:10px;
+}
+
+.whatsapp-btn{
+  display:block;
+  width:100%;
+  text-align:center;
+  background:#009443 !important;
+  margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="logo">Finicky Fixture</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="quote.html">Request Quote</a>
+    <a href="costing.html" class="btn-quote">Costing Calculator</a>
+  </nav>
+</header>
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Useful Links</h3>
+    <ul class="side-links">
+      <li><a href="measurement.html">Measurement Policy</a></li>
+      <li><a href="installation.html">Installation Rules</a></li>
+      <li><a href="refund.html">Refund Terms</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <article class="center-box">
+
+    <div class="invoice-header">
+      <img src="assets/images/logo.jpg" alt="Company Logo" style="height:60px;">
+      <div class="invoice-title">
+        QUOTATION / COSTING<br>
+        <small>Finicky Fixture Nigeria Limited</small>
+      </div>
+    </div>
+
+    <h2>Customer Details</h2>
+
+    <div class="details-grid">
+      <div>
+        <label>Full Name</label>
+        <input id="cname" type="text" placeholder="Customer full name" required>
+      </div>
+
+      <div>
+        <label>Phone Number</label>
+        <input id="cphone" type="text" placeholder="Customer phone number" required>
+      </div>
+
+      <div style="grid-column: span 2;">
+        <label>Location / Address</label>
+        <input id="clocation" type="text" placeholder="Installation address" required>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Costing Items</h2>
+    <p style="color:#555;font-size:14px;">Enter multiple line items below:</p>
+
+    <div id="items"></div>
+
+    <button onclick="addItem()" class="form-btn-modern add-btn">+ Add another item</button>
+
+    <hr>
+
+    <h2>Workmanship & VAT</h2>
+
+    <div class="work-grid">
+      <div>
+        <label>Workmanship Cost</label>
+        <input id="workmanship" type="number" placeholder="e.g 35000">
+      </div>
+
+      <div>
+        <label>VAT (%)</label>
+        <input id="vatRate" type="number" value="7.5">
+      </div>
+    </div>
+
+    <button onclick="calculateTotal()" class="form-btn-modern">Calculate Total</button>
+
+
+    <div id="resultBox" class="result-card" style="display:none;">
+
+      <h3>Quotation Summary</h3>
+
+      <table class="table-style" id="summaryTable"></table>
+
+      <div class="total-display" id="fullTotal"></div>
+
+      <button onclick="window.print()" class="form-btn-modern print-btn">Print Quotation</button>
+
+      <a id="waSend" class="form-btn-modern whatsapp-btn">Send via WhatsApp</a>
+
+      <button onclick="loadHistory()" class="form-btn-modern" style="margin-top:10px;">
+        View History
+      </button>
+
+      <div id="historyBox" style="display:none;margin-top:15px;"></div>
+
+    </div>
+
+  </article>
+
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Contact Office</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+    <a href="quote.html" class="side-btn">Submit Manual Quote →</a>
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+<script>
+
+let index = 0;
+let invoiceNo = Number(localStorage.getItem("invoice_no") || 1001);
+
+// Create first row automatically
+window.onload = function(){
+ addItem();
+};
+
+
+// Add costing row
+function addItem(){
+  index++;
+
+  let div = document.createElement("div");
+  div.className = "cost-block";
+
+  div.innerHTML = `
+    <h3>Item ${index}</h3>
+    <label>Description</label>
+    <input type="text" id="desc_${index}" placeholder="e.g Stainless Handrail">
+
+    <label>Unit Price</label>
+    <input type="number" id="unit_${index}" placeholder="e.g 18000">
+
+    <label>Quantity</label>
+    <input type="number" id="qty_${index}" placeholder="e.g 10">
+  `;
+
+  document.getElementById("items").appendChild(div);
+}
+
+
+
+function calculateTotal(){
+
+  let subtotal = 0;
+  let itemsArr = [];
+
+  for(let y = 1; y <= index; y++){
+    let desc = document.getElementById(`desc_${y}`).value;
+    let unit = Number(document.getElementById(`unit_${y}`).value);
+    let qty = Number(document.getElementById(`qty_${y}`).value);
+
+    if(desc && unit > 0 && qty > 0){
+      let amount = unit * qty;
+      subtotal += amount;
+      itemsArr.push({desc, unit, qty, amount});
+    }
+  }
+
+
+  let workmanship = Number(document.getElementById("workmanship").value || 0);
+  let vatRate = Number(document.getElementById("vatRate").value || 0);
+  let vatAmount = workmanship * (vatRate / 100);
+
+  let totalAmount = subtotal + workmanship + vatAmount;
+
+
+  // Customer Info
+  let name = document.getElementById("cname").value;
+  let phone = document.getElementById("cphone").value;
+  let loc = document.getElementById("clocation").value;
+
+
+  // Save to local storage
+  let entry = {
+    invoice_no: invoiceNo,
+    name,
+    phone,
+    location: loc,
+    items: itemsArr,
+    workmanship,
+    vatAmount,
+    totalAmount,
+    date: new Date().toLocaleString()
+  };
+
+  let allQuotes = JSON.parse(localStorage.getItem("quotation_history") || "[]");
+  allQuotes.push(entry);
+  localStorage.setItem("quotation_history", JSON.stringify(allQuotes));
+  localStorage.setItem("invoice_no", invoiceNo + 1);
+
+  invoiceNo++;
+
+  renderInvoice(entry);
+}
+
+
+
+function renderInvoice(data){
+
+  let tableRows = "";
+
+  data.items.forEach(item=>{
+    tableRows += `
+      <tr>
+        <td>${item.desc}</td>
+        <td>₦${item.unit.toLocaleString()}</td>
+        <td>${item.qty}</td>
+        <td>₦${item.amount.toLocaleString()}</td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("summaryTable").innerHTML = `
+    <tr>
+      <th>Description</th>
+      <th>Unit</th>
+      <th>Qty</th>
+      <th>Amount</th>
+    </tr>
+    ${tableRows}
+    <tr>
+      <th colspan="3">Workmanship</th>
+      <td>₦${data.workmanship.toLocaleString()}</td>
+    </tr>
+    <tr>
+      <th colspan="3">VAT</th>
+      <td>₦${data.vatAmount.toLocaleString()}</td>
+    </tr>
+    <tr>
+      <th colspan="3">Grand Total</th>
+      <th>₦${data.totalAmount.toLocaleString()}</th>
+    </tr>
+  `;
+
+
+  document.getElementById("fullTotal").innerHTML = `
+      Invoice No: <strong>${data.invoice_no}</strong><br>
+      <span style="font-size:22px;color:#111;">₦${data.totalAmount.toLocaleString()}</span>
+  `;
+
+  document.getElementById("resultBox").style.display = "block";
+
+
+  document.getElementById("waSend").href =
+    "https://wa.me/2348028587310?text="
+    + encodeURIComponent(
+      `Invoice No: ${data.invoice_no}
+Client: ${data.name}
+Phone: ${data.phone}
+Location: ${data.location}
+
+TOTAL: ₦${data.totalAmount.toLocaleString()}`
+    );
+}
+
+
+function loadHistory(){
+
+  let records = JSON.parse(localStorage.getItem("quotation_history") || "[]");
+  let histDiv = document.getElementById("historyBox");
+  histDiv.style.display = "block";
+
+  let html = `
+  <table class="history-table">
+    <tr>
+      <th>Invoice No</th>
+      <th>Customer</th>
+      <th>Date</th>
+      <th>Total</th>
+    </tr>
+  `;
+
+  records.forEach(r=>{
+    html += `
+      <tr>
+        <td>${r.invoice_no}</td>
+        <td>${r.name}</td>
+        <td>${r.date}</td>
+        <td>₦${r.totalAmount.toLocaleString()}</td>
+      </tr>
+    `;
+  });
+
+  html += "</table>";
+
+  histDiv.innerHTML = html;
+}
+
+</script>
+
+
+</body>
+</html>

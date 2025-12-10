@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Return & Refund Policy — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* Sticky animated header */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 28px;
+  background:rgba(255,255,255,.2);
+  backdrop-filter:blur(7px);
+  transition:all .35s ease;
+}
+
+.site-header.scrolled{
+  background:#fff;
+  box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo img{
+  height:90px;
+}
+.logo span{
+  font-size:32px;
+  font-weight:900;
+  color:#000;
+}
+
+/* Menu links */
+.nav-links{
+  display:flex;
+  gap:26px;
+}
+.nav-links a{
+  text-decoration:none;
+  font-weight:600;
+  color:#000;
+  padding:7px 10px;
+  transition:.3s;
+}
+.nav-links a:hover{
+  color:#c19702;
+  transform:scale(1.05);
+}
+
+.btn-quote{
+  background:#c19702;
+  padding:8px 14px !important;
+  border-radius:6px;
+  color:#fff !important;
+}
+.btn-quote:hover{
+  background:#000 !important;
+}
+
+/* Mobile menu */
+.menu-toggle{
+  display:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+  .logo span{
+    font-size:22px;
+  }
+
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    right:0;
+    top:100%;
+    background:#fff;
+    width:230px;
+    padding:14px;
+    border-top:3px solid #c19702;
+  }
+
+  .nav-links.open{
+    display:block;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="quote.html" class="btn-quote">Request Quote</a>
+  </nav>
+</header>
+
+
+<section class="hero-small">
+  <h1>Return & Refund Policy</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- Left Side -->
+  <aside class="side-box">
+    <h3>Reference Pages</h3>
+    <ul class="side-links">
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="responsibility.html">Customer Responsibilities</a></li>
+    </ul>
+
+    <h3>Before Work Begins</h3>
+    <ul class="side-links">
+      <li><a href="measurement.html">Measurement Policy</a></li>
+      <li><a href="installation.html">Installation Rules</a></li>
+      <li><a href="site-preparation.html">Preparation Checklist</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- Main Center -->
+  <article class="center-box">
+
+    <h2>General Policy</h2>
+    <p>
+      All stainless works fabricated are custom-built based on customer measurement,
+      therefore cannot be reused or resold elsewhere. Refunds only apply before cutting,
+      welding or material usage begins.
+    </p>
+
+    <h2>1. Cancellation Before Work Begins</h2>
+    <ul>
+      <li>Refund request must be made within 24 hours of payment.</li>
+      <li>15% administrative deduction applies.</li>
+      <li>If no materials have been purchased, refund is immediate.</li>
+    </ul>
+
+    <h2>2. Work Already Started</h2>
+    <ul>
+      <li>Cost of cut stainless materials will be deducted.</li>
+      <li>If welding has begun, refund only applies to remaining labour portion.</li>
+      <li>Fabricated parts cannot be refunded.</li>
+    </ul>
+
+    <h2>3. Installation Stage</h2>
+    <ul>
+      <li>No refund once installation has started on-site.</li>
+      <li>Customer-driven changes requiring rework are billable.</li>
+      <li>Returned items after installation removed attract labour fee.</li>
+    </ul>
+
+    <h2>4. Refund Processing Duration</h2>
+    <ul>
+      <li>Processed within 3–7 business days.</li>
+      <li>Refund issued to same originating bank account.</li>
+      <li>Acknowledgment message sent after completion.</li>
+    </ul>
+
+    <h2>5. Non-refundable Conditions</h2>
+    <ul>
+      <li>No refund for items installed at customer property.</li>
+      <li>No refund if customer changes design after approval.</li>
+      <li>No refund where damage was caused externally after installation.</li>
+    </ul>
+
+  </article>
+
+
+  <!-- Right Side -->
+  <aside class="side-box">
+
+    <h3>Support Contact</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+
+    <a href="quote.html" class="side-btn">Request Quote →</a>
+
+    <h3>Explore More</h3>
+    <ul class="side-links">
+      <li><a href="gallery.html">View Completed Work</a></li>
+      <li><a href="services.html">Available Services</a></li>
+      <li><a href="index.html">Return Home</a></li>
+    </ul>
+
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("open");
+}
+
+window.addEventListener("scroll", ()=>{
+  const head = document.querySelector(".site-header");
+  if(window.scrollY > 20){
+    head.classList.add("scrolled");
+  } else {
+    head.classList.remove("scrolled");
+  }
+});
+</script>
+
+</body>
+</html>

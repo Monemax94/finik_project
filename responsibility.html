@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Customer Responsibilities — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* HEADER EFFECT */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 25px;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(6px);
+  transition:all .35s ease;
+}
+
+.site-header.scrolled{
+  background:#ffffff;
+  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* LOGO SECTION */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo img{
+  height:90px;
+}
+
+.logo span{
+  font-size:32px;
+  font-weight:900;
+  color:#000;
+  text-shadow:1px 1px rgba(0,0,0,.15);
+}
+
+/* MENU LINKS */
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  color:#000;
+  font-weight:600;
+  padding:8px 10px;
+  text-decoration:none;
+  transition:.3s ease;
+}
+
+.nav-links a:hover{
+  transform:scale(1.05);
+  color:#c19702;
+}
+
+.btn-quote{
+  background:#c19702;
+  color:#fff !important;
+  padding:8px 14px !important;
+  border-radius:4px;
+}
+
+.btn-quote:hover{
+  background:#000 !important;
+}
+
+/* MOBILE BEHAVIOR */
+.menu-toggle{
+  display:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .logo span{
+    font-size:22px;
+  }
+
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    width:220px;
+    position:absolute;
+    right:0;
+    top:100%;
+    background:#fff;
+    padding:14px 0;
+    border-top:3px solid #c19702;
+  }
+
+  .nav-links.open{
+    display:block;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+</style>
+
+</head>
+<body>
+
+
+<header class="site-header">
+
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="quote.html" class="btn-quote">Request Quote</a>
+  </nav>
+
+</header>
+
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Important Links</h3>
+    <ul class="side-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+    </ul>
+
+    <h3>Requirements</h3>
+    <ul class="side-links">
+      <li><a href="installation.html">Installation Requirements</a></li>
+      <li><a href="measurement.html">Measurement Policy</a></li>
+      <li><a href="site-preparation.html">Site Checklist</a></li>
+    </ul>
+  </aside>
+
+
+
+  <!-- MAIN CONTENT -->
+  <article class="center-box">
+
+    <section class="tight-block">
+      <h2>Customer Responsibilities Before & During Service</h2>
+      <p>
+        To ensure smooth service and timely delivery, customers are expected to meet the 
+        obligations below before and during installation or fabrication.
+      </p>
+    </section>
+
+    <section class="tight-block">
+      <h2>1. Site Preparation</h2>
+      <ul>
+        <li>Grant access on agreed working dates.</li>
+        <li>Tiling and flooring must be fully completed.</li>
+        <li>Provide electricity access for welding and drilling.</li>
+      </ul>
+    </section>
+
+    <section class="tight-block">
+      <h2>2. Measurements & Approval</h2>
+      <ul>
+        <li>Final measurements must be confirmed before fabrication.</li>
+        <li>Any structural changes after measurement affect costing.</li>
+      </ul>
+    </section>
+
+    <section class="tight-block">
+      <h2>3. Payment Schedule</h2>
+      <ul>
+        <li>Deposit payment confirms project commencement.</li>
+        <li>Balance is paid immediately after installation.</li>
+      </ul>
+    </section>
+
+    <section class="tight-block">
+      <h2>4. Work Access</h2>
+      <ul>
+        <li>Allow sufficient space for movement of tools and technicians.</li>
+        <li>Ensure no interference or obstruction during process.</li>
+      </ul>
+    </section>
+
+    <section class="tight-block">
+      <h2>5. Post Installation</h2>
+      <ul>
+        <li>Inspect installation before technicians exit site.</li>
+        <li>Changes after team leaves attract service charges.</li>
+      </ul>
+    </section>
+
+  </article>
+
+
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="side-box">
+
+    <h3>Quick Contact</h3>
+    <p><strong>Tel:</strong><br>08028587310</p>
+    <p><strong>WhatsApp:</strong><br>08064736155</p>
+
+    <a href="quote.html" class="side-btn">Request Quote →</a>
+
+    <h3>Related Policies</h3>
+    <ul class="side-links">
+      <li><a href="refund.html">Refund Policy</a></li>
+      <li><a href="privacy.html">Data Protection Terms</a></li>
+      <li><a href="installation.html">Install Prep Guide</a></li>
+    </ul>
+
+  </aside>
+
+</section>
+
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("open");
+}
+
+window.addEventListener("scroll", ()=>{
+  const header = document.querySelector(".site-header");
+  if(window.scrollY > 25){
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+</script>
+
+</body>
+</html>

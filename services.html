@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Services — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* HEADER EFFECT */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 25px;
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(6px);
+  transition:all .4s ease;
+}
+
+.site-header.scrolled{
+  background:#ffffff;
+  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+}
+
+
+/* LOGO + TEXT */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  height:88px;
+  width:auto;
+  object-fit:contain;
+}
+
+.logo span{
+  font-size:30px;
+  font-weight:900;
+  color:#000;
+  text-shadow:1px 1px rgba(0,0,0,0.2);
+}
+
+
+/* NAVIGATION */
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  padding:8px 10px;
+  font-weight:600;
+  transition:all .3s ease;
+  color:#000;
+}
+
+.nav-links a:hover{
+  color:#c19702;
+  transform:scale(1.05);
+}
+
+.nav-links a.active{
+  border-bottom:3px solid #c19702;
+  color:#c19702;
+}
+
+/* QUOTE BUTTON */
+.btn-quote{
+  background:#c19702;
+  border-radius:4px;
+  color:#fff !important;
+  padding:8px 14px !important;
+}
+
+.btn-quote:hover{
+  background:#000 !important;
+  color:#fff !important;
+}
+
+
+/* MOBILE MENU */
+.menu-toggle{
+  display:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+  
+  .logo span{
+    font-size:20px;
+  }
+
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    background:white;
+    position:absolute;
+    right:0;
+    top:100%;
+    padding:15px;
+    width:210px;
+    border-top:2px solid #c19702;
+  }
+
+  .nav-links.open{
+    display:block;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="quote.html" class="btn-quote">Request Quote</a>
+  </nav>
+
+</header>
+
+
+<section class="hero-small">
+  <h1>Our Services</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Helpful Links</h3>
+    <ul class="side-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+    </ul>
+
+    <h3>Preparation Guides</h3>
+    <ul class="side-links">
+      <li><a href="installation.html">Installation Rules</a></li>
+      <li><a href="measurement.html">Measurement Policy</a></li>
+      <li><a href="site-preparation.html">Site Checklist</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- MAIN CENTER CONTENT -->
+  <article class="center-box">
+
+    <section>
+      <h2>What We Do</h2>
+<p class="text-block">
+  We fabricate and install stainless steel railing systems, gates, doors, balcony frameworks,
+  and customized engineering designs for modern structures. Our stainless projects are tailored
+  to fit residential buildings, commercial spaces, institutional structures, and private industrial facilities.
+  Every job is executed with focus on safety, aesthetics, and long-lasting material quality.
+</p>
+
+<p class="text-block">
+  Our services extend from professional site measurement to fabrication, installation, polishing,
+  and post-completion inspection. We work with high-grade stainless materials such as 304 and 316 steel,
+  providing superior resistance to corrosion, shine fading, and structural wear. We integrate advanced welding
+  practices, accurate finishing techniques, and installation methods that align with architectural requirements.
+</p>
+
+<p class="text-block">
+  As a company, we also provide advisory support for clients, helping them with design recommendations,
+  installation readiness guidance, cost planning, and measurement scheduling. Whether it is staircase railing,
+  full balcony protection, stainless gates, modern entry doors, kiosk fittings, partition systems or custom
+  structural fabrications, Finicky Fixture Nigeria Limited delivers reliable and aesthetic stainless solutions
+  built for durability and professional beauty.
+</p>
+
+    </section>
+
+    <section>
+      <h2>Our Professional Services</h2>
+
+<p class="text-block">
+  Finicky Fixture Nigeria Limited delivers complete handrail installation services designed for modern buildings,
+  ensuring accurate spacing, safe gripping height, premium stainless finishing and long-term durability.
+  Our installation method involves precise site measurement, structural drilling, fastening and professional polishing,
+  resulting in neat joint finishing and architectural balance.
+</p>
+
+<p class="text-block">
+  We fabricate and install balcony railing systems using high-grade stainless materials suitable for outdoor exposure,
+  heavy-use environments and multi-level structures. These railings are professionally aligned to balcony edges,
+  ensuring safety, corrosion resistance and visual enhancement of residential and commercial properties.
+</p>
+
+<p class="text-block">
+  Our staircase fabrication service caters to buildings with complex step layouts, spiral staircases, extended risers
+  and multiple landing platforms. We take accurate dimensional measurements, assemble customized rail lengths,
+  weld supporting posts, polish surfaces and align every installation to maintain uniform spacing from step edges.
+</p>
+
+<p class="text-block">
+  We also produce stainless entrance gates and security frames with reinforced welding strength and polished mirror finishing.
+  These gates improve property security, visual appeal and branding value, making them suitable for private estates,
+  corporate offices, schools, guest lodges and shopping facilities.
+</p>
+
+<p class="text-block">
+  Our fabrication team also builds specialty stainless items such as commercial-grade doors and frames,
+  partition rails, kiosk bodies, stands, display holders and structural braces. These are engineered based on actual site requirement,
+  ensuring they meet usage expectations, weight capacity, and installation conditions.
+</p>
+
+    </section>
+
+
+    <section>
+      <h2>Why Choose Us</h2>
+      <ul>
+        <li>Use of premium stainless steel (grades 304 & 316)</li>
+        <li>Professional welding quality & accurate fitting</li>
+        <li>Fast completion timeline</li>
+        <li>Highly aesthetic finishing</li>
+        <li>Affordable industry pricing</li>
+      </ul>
+    </section>
+
+  </article>
+
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="side-box">
+    <h3>Contact Support</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+
+    <a href="quote.html" class="side-btn">Request Quote →</a>
+
+    <h3>Policy Pages</h3>
+    <ul class="side-links">
+      <li><a href="refund.html">Refund Policy</a></li>
+      <li><a href="installation.html">Installation Process</a></li>
+      <li><a href="measurement.html">Measurement Rules</a></li>
+    </ul>
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters 08032006306.</p>
+</footer>
+
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+<script src="assets/js/main.js"></script>
+
+<script>
+
+// Toggle Menu
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// Scroll Header Effect
+window.addEventListener("scroll", ()=>{
+  const header = document.querySelector(".site-header");
+  if(window.scrollY > 20){
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+
+</script>
+
+</body>
+</html>

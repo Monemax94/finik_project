@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Submitted Quotes — Finicky Fixture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+.search-bar{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.search-bar input{
+  flex:1;
+  padding:10px;
+  border:1px solid #aaa;
+  border-radius:6px;
+}
+
+.search-bar button{
+  padding:10px 15px;
+  background:#c19702;
+  border:none;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.quote-card{
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:8px;
+  margin-bottom:20px;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+
+.quote-card img{
+  height:100px;
+  border-radius:6px;
+  margin-top:8px;
+}
+
+.btn-actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.btn-small{
+  padding:6px 10px;
+  border-radius:4px;
+  font-size:13px;
+  cursor:pointer;
+  border:none;
+}
+
+.btn-delete{
+  background:#b00000;
+  color:#fff;
+}
+
+.btn-whatsapp{
+  background:#25d366;
+  color:#fff;
+}
+
+.btn-pdf{
+  background:#000;
+  color:#fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    <img src="assets/images/logo.jpg" style="height:95px;">
+    <span style="font-size:32px;font-weight:900;">Finicky Fixture</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="quote.html" class="btn-quote">Submit New Quote</a>
+  </nav>
+</header>
+
+
+<section class="hero-small">
+  <h1>Submitted Quotes</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- LEFT -->
+  <aside class="side-box">
+    <h3>Quick Links</h3>
+    <ul class="side-links">
+      <li><a href="quote.html">Submit Quote</a></li>
+      <li><a href="services.html">View Services</a></li>
+      <li><a href="gallery.html">View Projects</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- MAIN -->
+  <article class="center-box">
+
+    <div class="search-bar">
+      <input id="searchBox" placeholder="Search by name or phone..." onkeyup="filterQuotes()">
+      <button onclick="resetSearch()">Reset</button>
+    </div>
+
+    <div id="list"></div>
+
+  </article>
+
+
+  <!-- RIGHT -->
+  <aside class="side-box">
+    <h3>Need Help?</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+
+<script>
+let allQuotes = [];
+
+window.onload = function(){
+  allQuotes = JSON.parse(localStorage.getItem("quote_records") || "[]");
+  renderQuotes(allQuotes);
+};
+
+function renderQuotes(records){
+  let box = document.getElementById("list");
+  box.innerHTML = "";
+
+  if(records.length === 0){
+    box.innerHTML = "<p>No quotes found...</p>";
+    return;
+  }
+
+  // show latest first, but avoid mutating original allQuotes order permanently
+  const copy = [...records].reverse();
+
+  copy.forEach((q, index) => {
+
+    let waLink =  
+      "https://wa.me/2348028587310?text=" +
+      encodeURIComponent(
+        "QUOTATION REQUEST" +
+        "\nName: " + q.name +
+        "\nPhone: " + q.phone +
+        "\nLocation: " + q.location +
+        "\nWork Type: " + q.type +
+        "\nMessage: " + q.message +
+        "\nDate: " + q.date
+      );
+
+    let html = `
+      <div class="quote-card">
+        <p><strong>${q.name}</strong> (${q.phone})</p>
+        <p><strong>Location:</strong> ${q.location}</p>
+        <p><strong>Work Type:</strong> ${q.type}</p>
+        <p><strong>Message:</strong> ${q.message || '-'}</p>
+        <p><strong>Date:</strong> ${q.date}</p>
+        ${q.image ? `<img src="${q.image}">` : `<small>No image uploaded</small>`}
+
+        <div class="btn-actions">
+          <button class="btn-small btn-whatsapp" onclick="window.open('${waLink}')">Send via WhatsApp</button>
+          <button class="btn-small btn-pdf" onclick="generatePDF(${records.indexOf(q)})">Export PDF</button>
+          <button class="btn-small btn-delete" onclick="deleteQuote(${records.indexOf(q)})">Delete</button>
+        </div>
+      </div>
+    `;
+
+    box.innerHTML += html;
+  });
+}
+
+function filterQuotes(){
+  let keyword = document.getElementById("searchBox").value.toLowerCase();
+  let filtered = allQuotes.filter(q =>
+    (q.name || "").toLowerCase().includes(keyword) ||
+    (q.phone || "").toLowerCase().includes(keyword)
+  );
+  renderQuotes(filtered);
+}
+
+function resetSearch(){
+  document.getElementById("searchBox").value="";
+  renderQuotes(allQuotes);
+}
+
+function deleteQuote(index){
+  if(confirm("Delete this quote?")){
+    allQuotes.splice(index,1);
+    localStorage.setItem("quote_records", JSON.stringify(allQuotes));
+    renderQuotes(allQuotes);
+  }
+}
+
+// 🔹 NEW: Proper PDF using jsPDF with header + optional image
+function generatePDF(index){
+  if (!window.jspdf || !window.jspdf.jsPDF){
+    alert("PDF library not loaded yet.");
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const q = allQuotes[index];
+
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+
+  // HEADER STRIP
+  doc.setFillColor(230,230,230);
+  doc.rect(0, 0, 210, 25, "F");
+
+  // Company name
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(18);
+  doc.text("FINICKY FIXTURE NIGERIA LIMITED", 105, 12, { align: "center" });
+
+  doc.setFontSize(11);
+  doc.setFont("helvetica","normal");
+  doc.text("Stainless Steel Fabrication & Installation", 105, 18, { align: "center" });
+
+  let y = 32;
+
+  doc.setFontSize(14);
+  doc.setFont("helvetica","bold");
+  doc.text("Quotation Request Details", 15, y);
+  y += 8;
+
+  doc.setFontSize(11);
+  doc.setFont("helvetica","normal");
+
+  doc.text(`Name: ${q.name || ""}`, 15, y); y += 6;
+  doc.text(`Phone: ${q.phone || ""}`, 15, y); y += 6;
+  doc.text(`Location: ${q.location || ""}`, 15, y); y += 6;
+  doc.text(`Work Type: ${q.type || ""}`, 15, y); y += 8;
+
+  doc.setFont("helvetica","bold");
+  doc.text("Customer Message / Requirement:", 15, y);
+  y += 6;
+
+  doc.setFont("helvetica","normal");
+  const msg = q.message || "-";
+  const wrapped = doc.splitTextToSize(msg, 180);
+  wrapped.forEach(line => {
+    doc.text(line, 15, y);
+    y += 6;
+  });
+
+  y += 8;
+
+  // Simple costing placeholder (since no cost is stored in records)
+  doc.setFont("helvetica","bold");
+  doc.text("Costing Summary (to be filled by office)", 15, y);
+  y += 6;
+
+  doc.setFont("helvetica","normal");
+  doc.text("Materials: ____________________________", 15, y); y += 6;
+  doc.text("Workmanship: _________________________", 15, y); y += 6;
+  doc.text("Accessories / Fixings: _______________", 15, y); y += 6;
+  doc.text("Subtotal: ____________________________", 15, y); y += 6;
+  doc.text("VAT: ________________________________", 15, y); y += 6;
+  doc.text("Grand Total: _________________________", 15, y); y += 10;
+
+  // Attach image if available
+  if (q.image){
+    try {
+      doc.setFont("helvetica","bold");
+      doc.text("Reference Image:", 15, y);
+      y += 4;
+      doc.addImage(q.image, "JPEG", 15, y, 70, 50);
+    } catch(e){
+      console.log("Error adding image to PDF:", e);
+    }
+  }
+
+  // Footer
+  doc.setFontSize(9);
+  doc.setFont("helvetica","normal");
+  doc.text("Generated from Finicky Fixture Quote Viewer", 15, 290);
+
+  const filename = `Quote_${(q.name || "client").replace(/\s+/g,'_')}.pdf`;
+  doc.save(filename);
+}
+</script>
+
+<!-- jsPDF library (must stay AFTER our HTML but before any PDF clicks) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</body>
+</html>

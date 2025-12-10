@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Site Preparation Checklist — Finicky Fixture Nigeria Limited</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+/* HEADER EFFECT */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 25px;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(6px);
+  transition:all .35s ease;
+}
+
+.site-header.scrolled{
+  background:#ffffff;
+  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* LOGO DESIGN */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo img{
+  height:90px;
+}
+
+.logo span{
+  font-size:32px;
+  font-weight:900;
+  color:#000;
+  text-shadow:1px 1px rgba(0,0,0,0.15);
+}
+
+/* NAV LINKS */
+.nav-links{
+  display:flex;
+  gap:22px;
+}
+
+.nav-links a{
+  font-weight:600;
+  color:#000;
+  padding:8px 10px;
+  text-decoration:none;
+  transition:.3s ease;
+}
+
+.nav-links a:hover{
+  transform:scale(1.05);
+  color:#c19702;
+}
+
+.nav-links a.active{
+  color:#c19702;
+  border-bottom:3px solid #c19702;
+}
+
+/* QUOTE BUTTON */
+.btn-quote{
+  background:#c19702;
+  border-radius:4px;
+  padding:8px 14px !important;
+  color:#fff !important;
+}
+
+.btn-quote:hover{
+  background:#000 !important;
+}
+
+/* MOBILE NAV */
+.menu-toggle{
+  display:none;
+  font-size:32px;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .logo span{
+    font-size:24px;
+  }
+
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    width:220px;
+    position:absolute;
+    right:0;
+    top:100%;
+    background:#fff;
+    padding:12px 0;
+    border-top:3px solid #c19702;
+  }
+
+  .nav-links.open{
+    display:block;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+/* POLISHED CHECKLIST STYLE */
+.checklist li{
+  margin-bottom:6px;
+  padding-left:18px;
+  background:url('assets/images/check.png') no-repeat left center;
+  background-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="quote.html" class="btn-quote">Request Quote</a>
+  </nav>
+
+</header>
+
+
+<section class="hero-small">
+  <h1>Site Preparation Checklist</h1>
+</section>
+
+
+<section class="container-centered">
+
+  <!-- LEFT SIDE -->
+  <aside class="side-box">
+    <h3>Before We Arrive</h3>
+    <ul class="side-links">
+      <li><a href="measurement.html">Measurement Rules</a></li>
+      <li><a href="installation.html">Installation Requirements</a></li>
+      <li><a href="responsibility.html">Customer Responsibilities</a></li>
+    </ul>
+
+    <h3>Legal Pages</h3>
+    <ul class="side-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+    </ul>
+  </aside>
+
+
+  <!-- CENTER -->
+  <article class="center-box">
+
+    <h2>Readiness Checklist</h2>
+    <p>
+      Ensure these are ready before installation begins to avoid delays, rescheduling or extra charges.
+    </p>
+
+    <ul class="checklist">
+      <li>Final tiles and floors fully installed</li>
+      <li>Stair edges plastered and aligned</li>
+      <li>Wall finishing almost completed</li>
+      <li>Electricity supply available (for drilling/welding)</li>
+      <li>Work environment dry and leak-free</li>
+      <li>Space cleared of debris and obstruction</li>
+    </ul>
+
+    <h2>Access & Safety Setup</h2>
+    <ul class="checklist">
+      <li>Gate opened and access path cleared</li>
+      <li>Space provided for material dropping</li>
+      <li>Steps free from stored materials</li>
+      <li>Ladder/scaffolding available for upstairs floors</li>
+      <li>Children/pets kept away from work zone</li>
+    </ul>
+
+    <h2>After Installation</h2>
+    <ul class="checklist">
+      <li>You inspect work while team is still on-site</li>
+      <li>Technicians polish and wipe stainless surfaces</li>
+      <li>Changes after team leaves attract service fees</li>
+    </ul>
+
+  </article>
+
+
+  <!-- RIGHT SIDE -->
+  <aside class="side-box">
+
+    <h3>Contact Support</h3>
+    <p>📞 08028587310</p>
+    <p>💬 08064736155</p>
+
+    <a href="quote.html" class="side-btn">Request Quote →</a>
+
+    <h3>Useful Links</h3>
+    <ul class="side-links">
+      <li><a href="gallery.html">View Completed Projects</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li><a href="index.html">Company Overview</a></li>
+    </ul>
+
+  </aside>
+
+</section>
+
+
+<footer>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+</footer>
+
+
+<a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
+
+
+<script>
+
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+window.addEventListener("scroll", ()=>{
+  const header = document.querySelector(".site-header");
+  if(window.scrollY > 25){
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+
+</script>
+
+
+</body>
+</html>
