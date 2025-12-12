@@ -8,7 +8,10 @@
 
 <style>
 
-/* Sticky animated header */
+/* ======================================================= */
+/* HEADER */
+/* ======================================================= */
+
 .site-header{
   position:sticky;
   top:0;
@@ -21,44 +24,43 @@
   backdrop-filter:blur(7px);
   transition:all .35s ease;
 }
-
 .site-header.scrolled{
   background:#fff;
-  box-shadow:0 3px 10px rgba(0,0,0,0.2);
+  box-shadow:0 3px 10px rgba(0,0,0,.25);
 }
 
-/* Logo */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
   gap:10px;
 }
-.logo img{
-  height:90px;
-}
+.logo img{ height:90px; }
 .logo span{
   font-size:32px;
   font-weight:900;
   color:#000;
 }
 
-/* Menu links */
+/* NAVIGATION — DESKTOP */
 .nav-links{
   display:flex;
   gap:26px;
+  align-items:center;
 }
 .nav-links a{
   text-decoration:none;
   font-weight:600;
-  color:#000;
   padding:7px 10px;
-  transition:.3s;
+  color:#000;
+  transition:.3s ease;
 }
 .nav-links a:hover{
-  color:#c19702;
   transform:scale(1.05);
+  color:#c19702;
 }
 
+/* QUOTE BUTTON */
 .btn-quote{
   background:#c19702;
   padding:8px 14px !important;
@@ -69,37 +71,61 @@
   background:#000 !important;
 }
 
-/* Mobile menu */
+/* MOBILE MENU BUTTON */
 .menu-toggle{
   display:none;
   font-size:32px;
   cursor:pointer;
 }
 
+/* ======================================================= */
+/* MOBILE NAVIGATION FIX */
+/* ======================================================= */
+
 @media(max-width:900px){
-  .logo span{
-    font-size:22px;
-  }
+
+  .logo span{ font-size:22px; }
+  .logo img{ height:60px; }
 
   .nav-links{
-    display:none;
     flex-direction:column;
     position:absolute;
     right:0;
     top:100%;
-    background:#fff;
     width:230px;
-    padding:14px;
+    background:#fff;
+    padding:14px 0;
     border-top:3px solid #c19702;
+    display:none;
+    box-shadow:0 4px 16px rgba(0,0,0,0.25);
   }
 
   .nav-links.open{
-    display:block;
+    display:flex !important;
+  }
+
+  .nav-links a{
+    width:100%;
+    padding:14px 18px;
+    border-bottom:1px solid #eee;
   }
 
   .menu-toggle{
     display:block;
   }
+}
+
+/* ======================================================= */
+/* SKY-BLUE SIDEBAR LINK STYLE */
+/* ======================================================= */
+
+.side-box a{
+  color:#3aaaff !important;
+  font-weight:600;
+}
+.side-box a:hover{
+  color:#0077e6 !important;
+  text-decoration:underline;
 }
 
 </style>
@@ -108,6 +134,7 @@
 <body>
 
 <header class="site-header">
+
   <div class="logo">
     <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
     <span>Finicky Fixture</span>
@@ -123,6 +150,7 @@
     <a href="contact.html">Contact</a>
     <a href="quote.html" class="btn-quote">Request Quote</a>
   </nav>
+
 </header>
 
 
@@ -133,7 +161,7 @@
 
 <section class="container-centered">
 
-  <!-- Left Side -->
+  <!-- LEFT SIDEBAR -->
   <aside class="side-box">
     <h3>Reference Pages</h3>
     <ul class="side-links">
@@ -151,13 +179,13 @@
   </aside>
 
 
-  <!-- Main Center -->
+  <!-- MAIN CONTENT -->
   <article class="center-box">
 
     <h2>General Policy</h2>
     <p>
-      All stainless works fabricated are custom-built based on customer measurement,
-      therefore cannot be reused or resold elsewhere. Refunds only apply before cutting,
+      All stainless works fabricated are custom-built based on customer measurement.
+      Therefore, they cannot be reused or resold. Refunds only apply before any cutting,
       welding or material usage begins.
     </p>
 
@@ -170,36 +198,36 @@
 
     <h2>2. Work Already Started</h2>
     <ul>
-      <li>Cost of cut stainless materials will be deducted.</li>
-      <li>If welding has begun, refund only applies to remaining labour portion.</li>
+      <li>Cost of cut stainless materials is deducted.</li>
+      <li>If welding has started, refund applies only to the remaining unpaid labour portion.</li>
       <li>Fabricated parts cannot be refunded.</li>
     </ul>
 
     <h2>3. Installation Stage</h2>
     <ul>
-      <li>No refund once installation has started on-site.</li>
+      <li>No refund once installation has begun on-site.</li>
       <li>Customer-driven changes requiring rework are billable.</li>
-      <li>Returned items after installation removed attract labour fee.</li>
+      <li>Removing installed items attracts labour charge.</li>
     </ul>
 
     <h2>4. Refund Processing Duration</h2>
     <ul>
       <li>Processed within 3–7 business days.</li>
       <li>Refund issued to same originating bank account.</li>
-      <li>Acknowledgment message sent after completion.</li>
+      <li>A confirmation message is sent after refund completion.</li>
     </ul>
 
     <h2>5. Non-refundable Conditions</h2>
     <ul>
       <li>No refund for items installed at customer property.</li>
-      <li>No refund if customer changes design after approval.</li>
-      <li>No refund where damage was caused externally after installation.</li>
+      <li>No refund for design changes after approval.</li>
+      <li>No refund where external damage occurs after installation.</li>
     </ul>
 
   </article>
 
 
-  <!-- Right Side -->
+  <!-- RIGHT SIDEBAR -->
   <aside class="side-box">
 
     <h3>Support Contact</h3>
@@ -224,6 +252,7 @@
   <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
 </footer>
 
+
 <a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
 
 
@@ -234,11 +263,7 @@ function toggleMenu(){
 
 window.addEventListener("scroll", ()=>{
   const head = document.querySelector(".site-header");
-  if(window.scrollY > 20){
-    head.classList.add("scrolled");
-  } else {
-    head.classList.remove("scrolled");
-  }
+  head.classList.toggle("scrolled", window.scrollY > 20);
 });
 </script>
 

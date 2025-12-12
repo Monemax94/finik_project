@@ -8,7 +8,9 @@
 
 <style>
 
-/* HEADER EFFECT */
+/* ======================================================= */
+/* STICKY HEADER — DESKTOP + MOBILE */
+/* ======================================================= */
 .site-header{
   position:sticky;
   top:0;
@@ -19,25 +21,21 @@
   padding:14px 25px;
   background:rgba(255,255,255,0.25);
   backdrop-filter:blur(6px);
-  transition:all .4s ease;
+  transition:all .35s ease;
 }
 
 .site-header.scrolled{
   background:#ffffff;
-  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+  box-shadow:0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* LOGO AREA */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
   gap:12px;
 }
-
-.logo img{
-  height:90px;
-}
-
+.logo img{ height:90px; }
 .logo span{
   font-size:30px;
   font-weight:900;
@@ -45,74 +43,87 @@
   text-shadow:1px 1px rgba(0,0,0,0.18);
 }
 
-/* NAVIGATION */
+/* DESKTOP NAVIGATION */
 .nav-links{
   display:flex;
   gap:22px;
+  align-items:center;
 }
-
 .nav-links a{
   text-decoration:none;
   font-weight:600;
   padding:8px 10px;
-  transition:all .3s;
   color:#000;
+  transition:.3s ease;
 }
-
 .nav-links a:hover{
   transform:scale(1.05);
   color:#c19702;
 }
-
-.nav-links a.active{
-  color:#c19702;
-  border-bottom:3px solid #c19702;
-}
-
-/* QUOTE BUTTON */
 .btn-quote{
   background:#c19702;
-  border-radius:4px;
-  padding:8px 14px !important;
   color:#fff !important;
+  padding:8px 14px !important;
+  border-radius:4px;
 }
-
 .btn-quote:hover{
   background:#000 !important;
-  color:#fff !important;
 }
 
-/* MOBILE MENU */
+/* MENU TOGGLE ICON */
 .menu-toggle{
   display:none;
   font-size:32px;
   cursor:pointer;
 }
 
+/* ======================================================= */
+/* MOBILE NAVIGATION — FIXED & CLEAN */
+/* ======================================================= */
 @media(max-width:900px){
-  .logo span{
-    font-size:22px;
-  }
+
+  .logo img{ height:60px; }
+  .logo span{ font-size:22px; }
 
   .nav-links{
-    display:none;
-    flex-direction:column;
+    position:absolute;
     top:100%;
     right:0;
-    position:absolute;
-    width:210px;
+    width:230px;
     background:white;
+    flex-direction:column;
     padding:10px 0;
-    border-top:2px solid #c19702;
+    border-top:3px solid #c19702;
+    display:none;
+    box-shadow:0 4px 16px rgba(0,0,0,0.25);
   }
 
+  /* Important fix: must be FLEX */
   .nav-links.open{
-    display:block;
+    display:flex !important;
+  }
+
+  .nav-links a{
+    width:100%;
+    padding:14px 18px;
+    border-bottom:1px solid #eee;
   }
 
   .menu-toggle{
     display:block;
   }
+}
+
+/* ======================================================= */
+/* SKY-BLUE SIDEBAR LINKS */
+/* ======================================================= */
+.side-box a{
+  color:#3aaaff !important;
+  font-weight:600;
+}
+.side-box a:hover{
+  color:#0077e6 !important;
+  text-decoration:underline;
 }
 
 </style>
@@ -173,36 +184,36 @@
     <h2>Before Installation</h2>
     <p>
       Kindly ensure these conditions are met for proper installation,
-      clean finishing and measurement accuracy.
+      clean finishing and accurate workmanship.
     </p>
 
     <h2>1. Site Readiness</h2>
     <ul>
-      <li>Floor/tiling must be completed.</li>
+      <li>Flooring/tiling must be completed.</li>
       <li>Stair edges must be plastered and levelled.</li>
-      <li>Site should be dry and free from water leaks.</li>
+      <li>Area must be dry and clean.</li>
       <li>Electricity must be available for tools.</li>
     </ul>
 
     <h2>2. Measurement Requirements</h2>
     <ul>
       <li>Measurements are taken after finishing works.</li>
-      <li>Changes made afterwards affect price.</li>
-      <li>Final measurement approval is needed before fabrication.</li>
+      <li>Any change afterwards affects quotation.</li>
+      <li>Final measurement approval is required before fabrication.</li>
     </ul>
 
     <h2>3. Safety Requirements</h2>
     <ul>
-      <li>Ladder or scaffold must be available for upstairs work.</li>
-      <li>Work paths must be accessible.</li>
-      <li>Keep children and unauthorized persons away.</li>
+      <li>Provide ladder or scaffold for upper floors.</li>
+      <li>Ensure free movement path for installers.</li>
+      <li>Keep children and untrained persons away.</li>
     </ul>
 
     <h2>4. After Installation</h2>
     <ul>
-      <li>Customer must inspect before team exits.</li>
-      <li>Polishing and cleanup are included on same day.</li>
-      <li>Corrections after departure attract service fee.</li>
+      <li>Customer must inspect work before technicians exit.</li>
+      <li>Polishing and cleanup are included same day.</li>
+      <li>Corrections after exit attract service fee.</li>
     </ul>
 
   </article>
@@ -233,11 +244,8 @@
   <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
 </footer>
 
-
 <a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
 
-
-<script src="assets/js/main.js"></script>
 
 <script>
 
@@ -246,12 +254,8 @@ function toggleMenu(){
 }
 
 window.addEventListener("scroll", ()=>{
-  const header = document.querySelector(".site-header");
-  if(window.scrollY > 25){
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+  document.querySelector(".site-header")
+    .classList.toggle("scrolled", window.scrollY > 25);
 });
 
 </script>

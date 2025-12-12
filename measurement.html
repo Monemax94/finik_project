@@ -8,7 +8,9 @@
 
 <style>
 
-/* HEADER EFFECT */
+/* ======================================================= */
+/* STICKY HEADER (Desktop + Mobile) */
+/* ======================================================= */
 .site-header{
   position:sticky;
   top:0;
@@ -24,20 +26,16 @@
 
 .site-header.scrolled{
   background:#ffffff;
-  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+  box-shadow:0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* LOGO DESIGN */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
   gap:12px;
 }
-
-.logo img{
-  height:90px;
-}
-
+.logo img{ height:90px; }
 .logo span{
   font-size:32px;
   font-weight:900;
@@ -45,75 +43,87 @@
   text-shadow:1px 1px rgba(0,0,0,0.15);
 }
 
-/* NAVIGATION LINKS */
+/* NAVIGATION (Desktop) */
 .nav-links{
   display:flex;
   gap:22px;
 }
-
 .nav-links a{
   font-weight:600;
+  text-decoration:none;
   color:#000;
   padding:8px 10px;
-  text-decoration:none;
   transition:.3s ease;
 }
-
 .nav-links a:hover{
   transform:scale(1.05);
   color:#c19702;
 }
 
-.nav-links a.active{
-  color:#c19702;
-  border-bottom:3px solid #c19702;
-}
-
-/* QUOTE BUTTON */
 .btn-quote{
   background:#c19702;
   border-radius:4px;
   padding:8px 14px !important;
   color:#fff !important;
 }
-
 .btn-quote:hover{
   background:#000 !important;
-  color:#fff !important;
 }
 
-/* MOBILE NAV */
+/* MOBILE MENU ICON */
 .menu-toggle{
   display:none;
   font-size:32px;
   cursor:pointer;
 }
 
+/* ======================================================= */
+/* MOBILE NAVIGATION — FIXED VERSION */
+/* ======================================================= */
 @media(max-width:900px){
 
-  .logo span{
-    font-size:24px;
-  }
+  .logo img{ height:60px; }
+  .logo span{ font-size:22px; }
 
   .nav-links{
-    display:none;
-    flex-direction:column;
-    width:220px;
     position:absolute;
-    right:0;
     top:100%;
-    background:#fff;
-    padding:12px 0;
+    right:0;
+    width:230px;
+    background:white;
+    flex-direction:column;
+    padding:14px 0;
     border-top:3px solid #c19702;
+    display:none;
+    box-shadow:0px 4px 16px rgba(0,0,0,0.25);
   }
 
+  /* Important fix: Use flex for proper spacing */
   .nav-links.open{
-    display:block;
+    display:flex !important;
+  }
+
+  .nav-links a{
+    width:100%;
+    padding:14px 18px;
+    border-bottom:1px solid #eee;
   }
 
   .menu-toggle{
     display:block;
   }
+}
+
+/* ======================================================= */
+/* SKY-BLUE SIDEBAR LINKS */
+/* ======================================================= */
+.side-box a{
+  color:#3aaaff !important;
+  font-weight:600;
+}
+.side-box a:hover{
+  color:#0077e6 !important;
+  text-decoration:underline;
 }
 
 </style>
@@ -150,7 +160,7 @@
 
 <section class="container-centered">
 
-  <!-- LEFT SIDE -->
+  <!-- LEFT SIDEBAR -->
   <aside class="side-box">
     <h3>Before Installation</h3>
     <ul class="side-links">
@@ -173,55 +183,55 @@
 
     <h2>Measurement Policy Overview</h2>
     <p>
-      Accurate on-site measurements determine fabrication cutting sizes, fitting alignment,
-      material cost and installation plan. Measurements are done after visible finishing work.
+      Accurate measurements determine cutting sizes, fitting alignment,
+      material usage and installation planning. Measurements are taken after finishing work only.
     </p>
 
     <h2>1. Site Measurement Requirements</h2>
     <ul>
-      <li>Floor tiles must be fully installed and leveled.</li>
-      <li>Stair edges must be straight and plastered.</li>
-      <li>Main wall finishing must be completed.</li>
-      <li>Measurement should not be taken during ongoing structural changes.</li>
+      <li>Tiles must be fully installed and levelled.</li>
+      <li>Stair edges must be plastered and straight.</li>
+      <li>Wall finishing must be completed.</li>
+      <li>No measurement during structural changes.</li>
     </ul>
 
     <h2>2. On-site Measurement Charges</h2>
     <ul>
-      <li>Within Lagos and Asaba city — free measurement.</li>
-      <li>Outside city — transportation applies depending on mileage.</li>
-      <li>Additional visit caused by incomplete site — attracts extra cost.</li>
+      <li>Lagos / Asaba city — FREE measurement.</li>
+      <li>Outside city — transportation applies by mileage.</li>
+      <li>Repeat visit due to incomplete site — extra cost.</li>
     </ul>
 
     <h2>3. Cost Determination Factors</h2>
     <ul>
-      <li>Actual stainless length measured (meter basis).</li>
-      <li>Height, turning angles, joints and bends.</li>
-      <li>Accessories used — rods, bars, clamps, holders, corners etc.</li>
-      <li>Steel grade: 304 or 316 stainless.</li>
-      <li>Complexity of installation location.</li>
+      <li>Total stainless length measured (meter-basis).</li>
+      <li>Angles, turns, bends & complexity.</li>
+      <li>Accessories needed (bars, rods, corners, clamps).</li>
+      <li>Steel grade: 304 or 316.</li>
+      <li>Installation height and risk level.</li>
     </ul>
 
     <h2>4. When Fresh Measurement is Required</h2>
     <ul>
-      <li>Height of tiles or edges changed.</li>
-      <li>Walls rebuilt or extended after initial measurement.</li>
+      <li>Tile height changed.</li>
+      <li>Walls rebuilt after initial measurement.</li>
       <li>Stairs reshaped or recast.</li>
-      <li>New dimensions differ from original record.</li>
+      <li>New structure differs from previous record.</li>
     </ul>
 
-    <p><strong>Any change after fabrication begins leads to price adjustments.</strong></p>
+    <p><strong>Any change after fabrication begins leads to price adjustment.</strong></p>
 
     <h2>5. Final Measurement Confirmation</h2>
     <ul>
       <li>Customer must confirm final sizes verbally or via invoice.</li>
-      <li>Payment is based on validated measurement.</li>
-      <li>Fabrication begins only after appropriate deposit is received.</li>
+      <li>Costing is based on validated measurement.</li>
+      <li>Fabrication begins after required deposit is paid.</li>
     </ul>
 
   </article>
 
 
-  <!-- RIGHT SIDE -->
+  <!-- RIGHT SIDEBAR -->
   <aside class="side-box">
 
     <h3>Need Assistance?</h3>
@@ -250,8 +260,6 @@
 <a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
 
 
-<script src="assets/js/main.js"></script>
-
 <script>
 function toggleMenu(){
   document.getElementById('navLinks').classList.toggle('open');
@@ -259,11 +267,7 @@ function toggleMenu(){
 
 window.addEventListener("scroll", ()=>{
   const header = document.querySelector(".site-header");
-  if(window.scrollY > 30){
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+  header.classList.toggle("scrolled", window.scrollY > 30);
 });
 </script>
 

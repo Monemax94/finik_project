@@ -8,7 +8,9 @@
 
 <style>
 
+/* ======================================================= */
 /* HEADER EFFECT */
+/* ======================================================= */
 .site-header{
   position:sticky;
   top:0;
@@ -24,20 +26,16 @@
 
 .site-header.scrolled{
   background:#ffffff;
-  box-shadow:0 4px 8px rgba(0,0,0,0.25);
+  box-shadow:0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* LOGO DESIGN */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
   gap:12px;
 }
-
-.logo img{
-  height:90px;
-}
-
+.logo img{ height:90px; }
 .logo span{
   font-size:32px;
   font-weight:900;
@@ -45,12 +43,12 @@
   text-shadow:1px 1px rgba(0,0,0,0.15);
 }
 
-/* NAV LINKS */
+/* DESKTOP NAVIGATION */
 .nav-links{
   display:flex;
   gap:22px;
+  align-items:center;
 }
-
 .nav-links a{
   font-weight:600;
   color:#000;
@@ -58,56 +56,57 @@
   text-decoration:none;
   transition:.3s ease;
 }
-
 .nav-links a:hover{
   transform:scale(1.05);
   color:#c19702;
 }
 
-.nav-links a.active{
-  color:#c19702;
-  border-bottom:3px solid #c19702;
-}
-
-/* QUOTE BUTTON */
 .btn-quote{
   background:#c19702;
   border-radius:4px;
   padding:8px 14px !important;
   color:#fff !important;
 }
-
 .btn-quote:hover{
   background:#000 !important;
 }
 
-/* MOBILE NAV */
+/* MOBILE MENU BUTTON */
 .menu-toggle{
   display:none;
   font-size:32px;
   cursor:pointer;
 }
 
+/* ======================================================= */
+/* MOBILE NAVIGATION FIX */
+/* ======================================================= */
 @media(max-width:900px){
 
-  .logo span{
-    font-size:24px;
-  }
+  .logo img{ height:60px; }
+  .logo span{ font-size:22px; }
 
   .nav-links{
-    display:none;
-    flex-direction:column;
-    width:220px;
     position:absolute;
-    right:0;
     top:100%;
+    right:0;
+    width:230px;
     background:#fff;
+    flex-direction:column;
     padding:12px 0;
     border-top:3px solid #c19702;
+    display:none; /* initially hidden */
+    box-shadow:0px 4px 16px rgba(0,0,0,0.25);
   }
 
   .nav-links.open{
-    display:block;
+    display:flex !important;
+  }
+
+  .nav-links a{
+    width:100%;
+    padding:14px 18px;
+    border-bottom:1px solid #eee;
   }
 
   .menu-toggle{
@@ -115,7 +114,19 @@
   }
 }
 
-/* POLISHED CHECKLIST STYLE */
+/* ======================================================= */
+/* SKY-BLUE SIDEBAR LINKS */
+/* ======================================================= */
+.side-box a{
+  color:#3aaaff !important;
+  font-weight:600;
+}
+.side-box a:hover{
+  color:#0077e6 !important;
+  text-decoration:underline;
+}
+
+/* CHECKLIST STYLING */
 .checklist li{
   margin-bottom:6px;
   padding-left:18px;
@@ -157,7 +168,7 @@
 
 <section class="container-centered">
 
-  <!-- LEFT SIDE -->
+  <!-- LEFT SIDEBAR -->
   <aside class="side-box">
     <h3>Before We Arrive</h3>
     <ul class="side-links">
@@ -175,43 +186,43 @@
   </aside>
 
 
-  <!-- CENTER -->
+  <!-- CENTER CONTENT -->
   <article class="center-box">
 
     <h2>Readiness Checklist</h2>
     <p>
-      Ensure these are ready before installation begins to avoid delays, rescheduling or extra charges.
+      Ensure all conditions below are ready to avoid delays, extra charges or rescheduling.
     </p>
 
     <ul class="checklist">
       <li>Final tiles and floors fully installed</li>
       <li>Stair edges plastered and aligned</li>
-      <li>Wall finishing almost completed</li>
-      <li>Electricity supply available (for drilling/welding)</li>
-      <li>Work environment dry and leak-free</li>
-      <li>Space cleared of debris and obstruction</li>
+      <li>Wall finishing nearly completed</li>
+      <li>Electricity supply available for drilling/welding</li>
+      <li>Work area dry and free of leaks</li>
+      <li>Debris and obstruction cleared from work path</li>
     </ul>
 
     <h2>Access & Safety Setup</h2>
     <ul class="checklist">
       <li>Gate opened and access path cleared</li>
-      <li>Space provided for material dropping</li>
-      <li>Steps free from stored materials</li>
-      <li>Ladder/scaffolding available for upstairs floors</li>
-      <li>Children/pets kept away from work zone</li>
+      <li>Material drop space prepared</li>
+      <li>Stairway free from stored materials</li>
+      <li>Ladder/scaffolding provided for upstairs work</li>
+      <li>Children & pets kept away from work zone</li>
     </ul>
 
     <h2>After Installation</h2>
     <ul class="checklist">
-      <li>You inspect work while team is still on-site</li>
-      <li>Technicians polish and wipe stainless surfaces</li>
-      <li>Changes after team leaves attract service fees</li>
+      <li>Inspect work while team is still onsite</li>
+      <li>Technicians polish and clean stainless surfaces</li>
+      <li>Changes after team leaves attract service charges</li>
     </ul>
 
   </article>
 
 
-  <!-- RIGHT SIDE -->
+  <!-- RIGHT SIDEBAR -->
   <aside class="side-box">
 
     <h3>Contact Support</h3>
@@ -241,22 +252,15 @@
 
 
 <script>
-
 function toggleMenu(){
   document.getElementById('navLinks').classList.toggle('open');
 }
 
 window.addEventListener("scroll", ()=>{
   const header = document.querySelector(".site-header");
-  if(window.scrollY > 25){
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+  header.classList.toggle("scrolled", window.scrollY > 25);
 });
-
 </script>
-
 
 </body>
 </html>

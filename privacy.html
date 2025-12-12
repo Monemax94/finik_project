@@ -8,7 +8,9 @@
 
 <style>
 
-/* STICKY HEADER */
+/* ======================================================= */
+/* HEADER — Desktop + Mobile */
+/* ======================================================= */
 .site-header{
   position:sticky;
   top:0;
@@ -27,7 +29,7 @@
   box-shadow:0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* LOGO SECTION */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
@@ -44,10 +46,11 @@
   color:#000;
 }
 
-/* NAVIGATION */
+/* NAVIGATION (Desktop) */
 .nav-links{
   display:flex;
   gap:25px;
+  align-items:center;
 }
 
 .nav-links a{
@@ -74,38 +77,60 @@
   background:#000 !important;
 }
 
-/* MOBILE MENU */
+/* MOBILE MENU TOGGLE */
 .menu-toggle{
   display:none;
   font-size:32px;
   cursor:pointer;
 }
 
+/* ======================================================= */
+/* MOBILE NAVIGATION — FIXED VERSION */
+/* ======================================================= */
 @media(max-width:900px){
 
-  .logo span{
-    font-size:22px;
-  }
+  .logo span{ font-size:22px; }
+  .logo img{ height:60px; }
 
   .nav-links{
-    display:none;
-    flex-direction:column;
-    width:220px;
     position:absolute;
-    right:0;
     top:100%;
+    right:0;
+    width:230px;
     background:#fff;
+    flex-direction:column;
     padding:12px 0;
     border-top:3px solid #c19702;
+    display:none;
+    box-shadow:0px 4px 16px rgba(0,0,0,0.25);
   }
 
+  /* FIX: Must open as FLEX not BLOCK */
   .nav-links.open{
-    display:block;
+    display:flex !important;
+  }
+
+  .nav-links a{
+    width:100%;
+    padding:14px 18px;
+    border-bottom:1px solid #eee;
   }
 
   .menu-toggle{
     display:block;
   }
+}
+
+/* ======================================================= */
+/* SKY BLUE SIDEBAR LINKS — Applied to this page */
+/* ======================================================= */
+.side-box a{
+  color:#3aaaff !important;
+  font-weight:600;
+}
+.side-box a:hover{
+  color:#0077e6 !important;
+  text-decoration:underline;
 }
 
 </style>
@@ -159,7 +184,7 @@
   </aside>
 
 
-  <!-- MAIN CENTER -->
+  <!-- CENTER CONTENT -->
   <article class="center-box">
 
     <h2>Information We Collect</h2>
@@ -181,35 +206,34 @@
     <h2>How Personal Information is Used</h2>
     <p>
       Information collected is used internally to plan projects, assign installation teams,
-      and communicate with customers directly. It is not disclosed to external parties for promotional gain.
+      and communicate with customers directly. It is never shared for promotional gain.
     </p>
 
     <h2>Personal Data Sharing</h2>
     <ul>
-      <li>Only shared with customer approval</li>
-      <li>When legally required by public authorities</li>
-      <li>To deploy technicians for installation activities</li>
+      <li>Only shared with customer permission</li>
+      <li>When legally required by government authorities</li>
+      <li>To deploy technicians for on-site activities</li>
     </ul>
 
     <h2>Data Safety Measures</h2>
     <ul>
       <li>All customer communication is confidential</li>
-      <li>No unauthorized third-party access</li>
-      <li>No storage of ATM card, PIN or bank login credentials</li>
+      <li>No third-party access without permission</li>
+      <li>We do NOT store ATM card details or bank login information</li>
     </ul>
 
     <h2>Uploaded Images & Files</h2>
     <p>
-      Files and photos submitted are strictly for
-      quotation and fabrication reference. They are not posted, shared or published
-      without customer's written consent.
+      Uploaded files are used strictly for quotation and fabrication references.
+      They are not displayed publicly or shared externally.
     </p>
 
     <h2>Updates & Notifications</h2>
     <ul>
-      <li>Customer may receive invoice reminders or booking notices</li>
-      <li>No bulk advertisement messages</li>
-      <li>Communication can be stopped on customer request</li>
+      <li>Customers may receive job updates or invoice reminders</li>
+      <li>No mass advertisement messages</li>
+      <li>You may opt out at any time</li>
     </ul>
 
   </article>
@@ -237,7 +261,7 @@
 
 
 <footer>
-  <p>© 2025 Finicky Fixture Nigeria Limited | Dseigned by Osaji Peters - 08032006306.</p>
+  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
 </footer>
 
 <a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
@@ -249,12 +273,8 @@ function toggleMenu(){
 }
 
 window.addEventListener("scroll", ()=>{
-  const head = document.querySelector(".site-header");
-  if(window.scrollY > 20){
-    head.classList.add("scrolled");
-  } else {
-    head.classList.remove("scrolled");
-  }
+  document.querySelector(".site-header")
+    .classList.toggle("scrolled", window.scrollY > 20);
 });
 </script>
 
