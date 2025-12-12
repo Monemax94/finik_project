@@ -9,7 +9,9 @@
 
 <style>
 
-/* HEADER EFFECT */
+/* -------------------------------- */
+/* HEADER */
+/* -------------------------------- */
 .site-header{
   position:sticky;
   top:0;
@@ -19,110 +21,178 @@
   align-items:center;
   padding:12px 25px;
   background:rgba(255,255,255,0.3);
-  transition:all .4s ease;
   backdrop-filter:blur(6px);
+  transition:.35s ease;
 }
-
 .site-header.scrolled{
-  background:#ffffff;
+  background:#fff;
   box-shadow:0 4px 8px rgba(0,0,0,0.25);
 }
 
-/* LOGO + NAME */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
   gap:12px;
 }
-
 .logo img{
-  height:90px;
-  width:auto;
-  object-fit:contain;
+  height:85px;
 }
-
 .logo span{
-  font-size:30px;
+  font-size:28px;
   font-weight:900;
   color:#000;
-  letter-spacing:1px;
-  text-shadow:rgba(0,0,0,0.2) 1px 1px;
 }
 
-
-/* NAV LINKS */
+/* NAV */
 .nav-links{
   display:flex;
   gap:22px;
 }
-
 .nav-links a{
   text-decoration:none;
   padding:8px 10px;
   font-size:16px;
   font-weight:600;
   color:#111;
-  transition:all .3s;
+  transition:.3s ease;
 }
-
 .nav-links a:hover{
   color:#c19702;
-  transform:scale(1.04);
 }
-
 .nav-links a.active{
   border-bottom:3px solid #c19702;
   color:#c19702;
 }
-
-/* CTA BUTTON */
 .btn-quote{
   background:#c19702;
   border-radius:4px;
   color:#fff !important;
   padding:8px 12px !important;
 }
-
-.btn-quote:hover{
-  background:#000;
-  color:#fff !important;
-}
-
-/* MOBILE NAV */
 .menu-toggle{
   display:none;
-  font-size:32px;
+  font-size:33px;
   cursor:pointer;
 }
 
-
-/* RESPONSIVE */
+/* MOBILE NAV */
 @media(max-width:900px){
-
-  .logo span{
-    font-size:22px;
-  }
+  .logo img{height:60px;}
+  .logo span{font-size:22px;}
 
   .nav-links{
     display:none;
     flex-direction:column;
-    background:#ffffff;
+    background:white;
     position:absolute;
     right:0;
     top:100%;
+    width:210px;
     padding:15px;
     border-top:2px solid #c19702;
-    width:200px;
+  }
+  .nav-links.open{display:flex;}
+
+  .menu-toggle{display:block;}
+}
+
+/* -------------------------------- */
+/* HERO */
+/* -------------------------------- */
+.hero-small{
+  background:#111;
+  color:white;
+  padding:50px 20px;
+  text-align:center;
+}
+.hero-small h1{
+  margin:0;
+}
+
+/* -------------------------------- */
+/* LAYOUT */
+/* -------------------------------- */
+.container-centered{
+  display:grid;
+  grid-template-columns:250px 1fr 250px;
+  gap:25px;
+  width:92%;
+  margin:auto;
+  padding:35px 0;
+}
+
+.center-box, .side-box{
+  background:white;
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:18px;
+}
+
+.text-block{line-height:1.6; margin-bottom:18px;}
+
+/* Sidebar link color (sky blue) */
+.side-box a{
+  color:#3aaaff !important;
+  font-weight:600;
+}
+.side-box a:hover{
+  color:#0077e6 !important;
+  text-decoration:underline;
+}
+
+/* MOBILE SIDEBAR BUTTON */
+.mobile-toggle{
+  display:none;
+  background:#c19702;
+  color:white;
+  padding:12px;
+  border-radius:6px;
+  margin-bottom:10px;
+  text-align:center;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* RESPONSIVE SIDE BARS */
+@media(max-width:900px){
+
+  .container-centered{
+    grid-template-columns:1fr;
   }
 
-  .nav-links.open{
+  .side-box{
+    display:none;
+  }
+  .side-box.show{
     display:block;
   }
 
-  .menu-toggle{
+  .mobile-toggle{
     display:block;
   }
-  
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:15px;
+  background:#000;
+  color:white;
+  margin-top:40px;
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:14px 18px;
+  border-radius:50%;
+  font-size:24px;
+  color:white;
+  text-decoration:none;
 }
 
 </style>
@@ -132,9 +202,9 @@
 <body>
 
 <header class="site-header">
-  
+
   <div class="logo">
-    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <img src="assets/images/logo.jpg">
     <span>Finicky Fixture</span>
   </div>
 
@@ -159,8 +229,11 @@
 
 <section class="container-centered">
 
+  <!-- MOBILE BUTTON -->
+  <div class="mobile-toggle" onclick="toggleLeft()">Quick Reference ▼</div>
+
   <!-- LEFT SIDEBAR -->
-  <aside class="side-box">
+  <aside class="side-box" id="leftSidebar">
     <h3>Quick Reference</h3>
     <ul class="side-links">
       <li><a href="terms.html">Terms & Conditions</a></li>
@@ -203,15 +276,7 @@
 	  most honest and certified vendors of the industry. Moreover, we offer this service range to our clients 
 	  in various specifications as per their kaleidoscopic requirements at the most affordable prices.
     </p>
-
-    <h2>Our Mission</h2>
-    <ul>
-      <li>Deliver lasting stainless steel fabrication with accurate finishing</li>
-      <li>Use high-quality 304 and 316 stainless steel</li>
-      <li>Provide fast installation without damaging property</li>
-      <li>Give after-service maintenance support</li>
-    </ul>
-
+    
     <h2>Our Team</h2>
     <p class="text-block">
       We work with certified welders, polish finishers, cutting specialists, and installers who use modern 
@@ -233,6 +298,14 @@
   With years of real-project experience, they deliver a finish that reflects technical excellence and quality workmanship.
 </p>
 
+<h2>Our Mission</h2>
+    <ul>
+      <li>Deliver lasting stainless steel fabrication with accurate finishing</li>
+      <li>Use high-quality 304 and 316 stainless steel</li>
+      <li>Provide fast installation without damaging property</li>
+      <li>Give after-service maintenance support</li>
+    </ul>
+
     <h2>Office Locations</h2>
     <p><strong>Head Office:</strong><br>235, Ikotun Road, Lagos</p>
     <p><strong>Branch Office:</strong><br>No. 1 Ambrose Okakwu Street, Off DLA Road,<br>Asaba — Delta State</p>
@@ -240,14 +313,18 @@
   </article>
 
 
+
+  <!-- MOBILE BUTTON -->
+  <div class="mobile-toggle" onclick="toggleRight()">Contact Us ▼</div>
+
   <!-- RIGHT SIDEBAR -->
-  <aside class="side-box">
+  <aside class="side-box" id="rightSidebar">
 
     <h3>Contact Us</h3>
     <p>📞 08028587310</p>
     <p>💬 08064736155</p>
 
-    <a href="quote.html" class="side-btn">Request Quote →</a>
+    <a href="quote.html" class="link-btn">Request Quote →</a>
 
     <h3>Other Policies</h3>
     <ul class="side-links">
@@ -266,20 +343,25 @@
 
 <a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
 
-<script src="assets/js/main.js"></script>
 
 <script>
+// NAV MENU
 function toggleMenu(){
   document.getElementById('navLinks').classList.toggle('open');
 }
 
-window.addEventListener("scroll", () => {
-  const header = document.querySelector(".site-header");
-  if(window.scrollY > 25){
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
+// SIDEBAR TOGGLE
+function toggleLeft(){
+  document.getElementById('leftSidebar').classList.toggle('show');
+}
+function toggleRight(){
+  document.getElementById('rightSidebar').classList.toggle('show');
+}
+
+// HEADER SCROLL EFFECT
+window.addEventListener("scroll", ()=>{
+  document.querySelector(".site-header")
+    .classList.toggle("scrolled", window.scrollY > 20);
 });
 </script>
 

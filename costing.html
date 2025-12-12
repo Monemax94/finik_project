@@ -2,133 +2,143 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Costing & Quotation — Finicky Fixture</title>
+<title>Costing & Quotation Calculator — Finicky Fixture</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet" href="assets/css/style.css">
 
 <style>
+/* ---------- Header + Nav ---------- */
+.site-header{
+  position:sticky; top:0; z-index:9999;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 20px; background:white; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{height:60px; object-fit:contain}
+.logo span{font-weight:800; font-size:20px;}
+.menu-toggle{display:none;font-size:28px;cursor:pointer;user-select:none}
+.nav-links{display:flex; gap:16px; align-items:center}
+.nav-links a{ text-decoration:none; padding:8px 10px; font-weight:600; color:#111; }
 
-.cost-block{
-  border:1px solid #ccc;
-  padding:15px;
-  border-radius:6px;
-  margin-bottom:15px;
-  background:#fafafa;
+/* Mobile nav */
+@media(max-width:900px){
+  .menu-toggle{ display:block; }
+  .nav-links{
+    display:none; position:absolute; right:0; top:100%;
+    background:#fff; width:220px; flex-direction:column; padding:8px;
+    border-top:3px solid #c19702; box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  }
+  .nav-links.open{ display:flex; }
+  .nav-links a{ width:100%; padding:12px 10px; border-bottom:1px solid #efefef; }
 }
 
-.cost-block h3{
-  margin-top:0;
-  font-size:18px;
-  border-bottom:1px solid #ddd;
-  padding-bottom:6px;
+/* ---------- Layout ---------- */
+.container-centered{
+  display:flex; justify-content:space-between; width:92%; margin:18px auto; gap:20px;
+}
+.side-box{ flex:0 0 240px; border:1px solid #ddd; padding:12px; border-radius:8px; background:#fff; }
+.center-box{ flex:1; padding:12px; }
+
+@media(max-width:900px){
+  .container-centered{ flex-direction:column; }
+  .side-box{ order:3; width:100%; }
+  .center-box{ order:2; width:100%; }
 }
 
-.result-card{
-  background:#fff;
-  border:1px solid #bbb;
-  border-radius:8px;
-  padding:15px;
-  margin-top:20px;
-}
+/* ---------- Titles & Buttons ---------- */
+.page-title{ text-align:center; font-size:26px; font-weight:800; margin:16px 0; color:#111; }
+.form-btn-modern{ background:#c19702; color:#fff; padding:10px 14px; border:none; border-radius:6px; cursor:pointer; font-weight:700; display:inline-block; text-align:center; }
+.form-btn-muted{ background:#333; color:#fff; padding:10px 14px; border:none; border-radius:6px; cursor:pointer; display:inline-block; }
 
-.total-display{
-  font-size:20px;
-  font-weight:bold;
-  margin-top:12px;
-  color:#000;
-}
+/* ---------- Cost blocks ---------- */
+.cost-block{ border:1px solid #ccc; padding:14px; border-radius:6px; margin-bottom:12px; background:#fafafa; position:relative; }
+.cost-block h3{ margin:0 0 8px 0; font-size:16px; border-bottom:1px solid #e7e7e7; padding-bottom:6px; }
+.delete-btn{ position:absolute; right:10px; top:10px; font-size:20px; background:none; border:none; color:#c00; cursor:pointer; }
+.delete-btn:hover{ color:#f00; }
 
-input, select{
-  padding:10px;
-  width:100%;
-  margin-bottom:15px;
-  border:1px solid #bbb;
-  border-radius:6px;
-}
+/* Undo */
+.undo-box{ display:none; background:#fff3cd; padding:10px; border:1px solid #ffe08a; border-radius:6px; margin-bottom:12px; }
+.undo-btn{ background:#c19702; color:#fff; padding:6px 10px; border-radius:4px; cursor:pointer; }
 
-.table-style{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
+/* Inputs / Table */
+input, select, textarea{ width:100%; padding:10px; margin-bottom:12px; border:1px solid #bbb; border-radius:6px; }
+.table-style{ width:100%; border-collapse:collapse; margin-top:8px; }
+.table-style th, .table-style td{ border:1px solid #ddd; padding:8px; text-align:center; font-size:14px; }
+.table-style th{ background:#f0f0f0; }
 
-.table-style th, .table-style td{
-  border:1px solid #ddd;
-  padding:8px;
-  font-size:14px;
-  text-align:center;
-}
+/* Result */
+.result-card{ background:#fff; border:1px solid #ddd; border-radius:8px; padding:12px; margin-top:18px; }
+.total-display{ font-size:20px; font-weight:800; margin-top:10px; color:#111; }
 
-.table-style th{
-  background:#eee;
-}
+/* WhatsApp button */
+.whatsapp-btn{ display:block; width:100%; text-align:center; background:#25d366; color:#fff; padding:10px; border-radius:6px; text-decoration:none; margin-top:10px; }
 
-.invoice-header{
-  margin-bottom:20px;
-  margin-top:15px;
-  border-bottom:2px solid #333;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+/* Small helpers */
+.small-note{ color:#666; font-size:13px; margin-top:8px; }
 
-.invoice-title{
-  text-align:right;
-  font-size:20px;
-  font-weight:bold;
-}
+/* ---------- Print rules: header + result only, force one page ---------- */
+@media print {
+  /* hide everything */
+  body * { visibility: hidden !important; }
 
-.invoice-title small{
-  font-size:13px;
-}
+  /* show header, printHeader (logo block) and result box */
+  header.site-header, header.site-header *, #printHeader, #printHeader *, #resultBox, #resultBox * {
+    visibility: visible !important;
+  }
 
-.details-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:15px;
-}
+  /* avoid page breaks */
+  * {
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
 
-.work-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:15px;
-}
+  /* position header at top */
+  header.site-header { position:relative !important; top:0; left:0; width:100%; margin:0; padding:6px 0; box-shadow:none; }
 
-.add-btn{
-  background:#111 !important;
-  color:#fff;
-}
+  /* print-only header block */
+  #printHeader { display:block; text-align:center; margin-top:6px; }
 
-.print-btn{
-  width:100%;
-  margin-top:10px;
-}
+  /* place result directly under header */
+  #resultBox { margin-top:6px !important; padding:6px !important; position:relative !important; left:0; width:100%; }
 
-.whatsapp-btn{
-  display:block;
-  width:100%;
-  text-align:center;
-  background:#009443 !important;
-  margin-top:10px;
-}
+  /* slightly scale to fit one A4 page (tweak if needed) */
+  body { transform: scale(0.93); transform-origin: top center; }
 
+  /* hide interactive elements */
+  button, input, a { display:none !important; }
+}
 </style>
 </head>
-
 <body>
 
+<!-- Print-only header content (logo + company name) - visible only when printing -->
+<div id="printHeader" style="display:none;">
+  <img src="assets/images/logo.jpg" style="height:72px;"><br>
+  <strong style="font-size:18px;">Finicky Fixture Nigeria Limited</strong><br>
+  <small>Stainless Steel Fabrication & Installation</small>
+  <hr>
+</div>
+
+<!-- Main header with logo and nav -->
 <header class="site-header">
-  <div class="logo">Finicky Fixture</div>
+  <div class="logo">
+    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <span>Finicky Fixture</span>
+  </div>
+
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
   <nav class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="services.html">Services</a>
-    <a href="quote.html">Request Quote</a>
-    <a href="costing.html" class="btn-quote">Costing Calculator</a>
+    <a href="order.html">Place Order</a>
+    <a href="view-quotes.html">View Quotations</a>
+    <a class="btn-quote active" href="costing.html">Costing Calculator</a>
   </nav>
 </header>
 
+<h1 class="page-title">Costing & Quotation Calculator</h1>
 
 <section class="container-centered">
 
@@ -142,287 +152,311 @@ input, select{
     </ul>
   </aside>
 
-
-  <!-- MAIN CONTENT -->
+  <!-- CENTER -->
   <article class="center-box">
 
-    <div class="invoice-header">
-      <img src="assets/images/logo.jpg" alt="Company Logo" style="height:60px;">
-      <div class="invoice-title">
-        QUOTATION / COSTING<br>
-        <small>Finicky Fixture Nigeria Limited</small>
-      </div>
+    <!-- Undo notice -->
+    <div id="undoBox" class="undo-box">
+      Item deleted.
+      <button class="undo-btn" onclick="undoDelete()">Undo</button>
     </div>
 
+    <!-- Customer details -->
     <h2>Customer Details</h2>
-
-    <div class="details-grid">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
       <div>
         <label>Full Name</label>
-        <input id="cname" type="text" placeholder="Customer full name" required>
+        <input id="cname" type="text" placeholder="Customer full name">
       </div>
-
       <div>
         <label>Phone Number</label>
-        <input id="cphone" type="text" placeholder="Customer phone number" required>
+        <input id="cphone" type="text" placeholder="080..." >
       </div>
-
       <div style="grid-column: span 2;">
         <label>Location / Address</label>
-        <input id="clocation" type="text" placeholder="Installation address" required>
+        <input id="clocation" type="text" placeholder="Project address">
       </div>
     </div>
 
     <hr>
 
+    <!-- Cost items -->
     <h2>Costing Items</h2>
-    <p style="color:#555;font-size:14px;">Enter multiple line items below:</p>
-
     <div id="items"></div>
 
-    <button onclick="addItem()" class="form-btn-modern add-btn">+ Add another item</button>
+    <button class="form-btn-modern" onclick="addItem()">+ Add Item</button>
+    <p class="small-note">Tip: click the trash icon to remove a line. You can undo right after deleting.</p>
 
     <hr>
 
+    <!-- workmanship/vat -->
     <h2>Workmanship & VAT</h2>
-
-    <div class="work-grid">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
       <div>
-        <label>Workmanship Cost</label>
-        <input id="workmanship" type="number" placeholder="e.g 35000">
+        <label>Workmanship Cost (₦)</label>
+        <input id="workmanship" type="number" placeholder="e.g. 45000">
       </div>
-
       <div>
         <label>VAT (%)</label>
         <input id="vatRate" type="number" value="7.5">
       </div>
     </div>
 
-    <button onclick="calculateTotal()" class="form-btn-modern">Calculate Total</button>
+    <div style="margin-top:12px;">
+      <button class="form-btn-modern" onclick="calculateTotal()">Calculate Total</button>
+      <button class="form-btn-muted" style="margin-left:8px;" onclick="saveQuotation(false)">Save (no redirect)</button>
+      <button class="form-btn-modern" style="margin-left:8px;background:#2b7cff;" onclick="saveQuotation(true)">Save & View Quotes</button>
+    </div>
 
-
+    <!-- result summary -->
     <div id="resultBox" class="result-card" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <strong id="invoiceLabel">Invoice: —</strong><br>
+          <small id="dateLabel"></small>
+        </div>
+        <div style="text-align:right;">
+          <strong>Finicky Fixture Nigeria Limited</strong><br>
+          <small>Stainless Steel Fabrication & Installation</small>
+        </div>
+      </div>
 
-      <h3>Quotation Summary</h3>
-
-      <table class="table-style" id="summaryTable"></table>
+      <h3 style="margin-top:12px;">Quotation Summary</h3>
+      <table id="summaryTable" class="table-style"></table>
 
       <div class="total-display" id="fullTotal"></div>
 
-      <button onclick="window.print()" class="form-btn-modern print-btn">Print Quotation</button>
+      <!-- Signatures -->
+      <div style="margin-top:20px;">
+        <p><strong>Prepared By:</strong> ______________________________</p>
+        <p style="margin-top:12px;"><strong>Approved By:</strong> ______________________________</p>
+      </div>
 
-      <a id="waSend" class="form-btn-modern whatsapp-btn">Send via WhatsApp</a>
+      <div style="margin-top:12px;">
+        <button class="form-btn-modern print-btn" onclick="window.print()">Print Quotation</button>
+        <a id="waSend" class="whatsapp-btn" href="#" target="_blank">Send via WhatsApp</a>
+      </div>
 
-      <button onclick="loadHistory()" class="form-btn-modern" style="margin-top:10px;">
-        View History
-      </button>
-
-      <div id="historyBox" style="display:none;margin-top:15px;"></div>
-
+      <!-- navigation -->
+      <div style="margin-top:12px; display:flex; gap:8px;">
+        <a class="form-btn-modern" href="index.html" style="background:#333;">← Back to Home</a>
+        <a class="form-btn-modern" href="view-quotes.html" style="background:#c19702;">View Saved Quotations →</a>
+      </div>
     </div>
 
   </article>
 
-
-  <!-- RIGHT SIDEBAR -->
+  <!-- RIGHT -->
   <aside class="side-box">
     <h3>Contact Office</h3>
     <p>📞 08028587310</p>
     <p>💬 08064736155</p>
-    <a href="quote.html" class="side-btn">Submit Manual Quote →</a>
+    <a class="form-btn-modern" href="order.html">Submit Manual Order →</a>
   </aside>
 
 </section>
 
-
-<footer>
-  <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
+<footer style="text-align:center;padding:14px 0;">
+  <small>© 2025 Finicky Fixture Nigeria Limited.</small>
 </footer>
 
 <script>
-
-let index = 0;
-let invoiceNo = Number(localStorage.getItem("invoice_no") || 1001);
-
-// Create first row automatically
-window.onload = function(){
- addItem();
-};
-
-
-// Add costing row
-function addItem(){
-  index++;
-
-  let div = document.createElement("div");
-  div.className = "cost-block";
-
-  div.innerHTML = `
-    <h3>Item ${index}</h3>
-    <label>Description</label>
-    <input type="text" id="desc_${index}" placeholder="e.g Stainless Handrail">
-
-    <label>Unit Price</label>
-    <input type="number" id="unit_${index}" placeholder="e.g 18000">
-
-    <label>Quantity</label>
-    <input type="number" id="qty_${index}" placeholder="e.g 10">
-  `;
-
-  document.getElementById("items").appendChild(div);
+/* ---------- NAV MENU ---------- */
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
 }
 
+/* ---------- Data keys ---------- */
+const STORAGE_KEY = 'quotation_history';
+const INVOICE_KEY = 'quotation_invoice_no';
 
+/* ---------- State ---------- */
+let index = 0;
+let deletedRow = null;
+let lastCalculated = null; // store last computed summary for saving
 
+/* Start with one row */
+window.addEventListener('DOMContentLoaded', () => addItem());
+
+/* ---------- Add item ---------- */
+function addItem(){
+  index++;
+  const div = document.createElement('div');
+  div.className = 'cost-block';
+  div.id = 'row_' + index;
+
+  div.innerHTML = `
+    <h3>Item <span class="item-number">${index}</span></h3>
+    <button class="delete-btn" onclick="deleteRow(${index})" title="Delete line">🗑</button>
+
+    <label>Description</label>
+    <input type="text" id="desc_${index}" placeholder="e.g. Stainless handrail">
+
+    <label>Unit Price (₦)</label>
+    <input type="number" id="unit_${index}" placeholder="e.g. 18000">
+
+    <label>Quantity</label>
+    <input type="number" id="qty_${index}" placeholder="e.g. 10">
+  `;
+  document.getElementById('items').appendChild(div);
+}
+
+/* ---------- Delete with confirm & undo ---------- */
+function deleteRow(id){
+  if(!confirm('Are you sure you want to delete this item?')) return;
+  const row = document.getElementById('row_' + id);
+  if(!row) return;
+  deletedRow = { id: id, html: row.outerHTML };
+  row.remove();
+  renumberItems();
+  document.getElementById('undoBox').style.display = 'block';
+}
+
+/* Undo */
+function undoDelete(){
+  if(!deletedRow) return;
+  document.getElementById('items').insertAdjacentHTML('beforeend', deletedRow.html);
+  deletedRow = null;
+  document.getElementById('undoBox').style.display = 'none';
+  renumberItems();
+}
+
+/* Renumber visible item labels only */
+function renumberItems(){
+  const nums = document.querySelectorAll('.item-number');
+  let c = 1;
+  nums.forEach(n => n.textContent = c++);
+}
+
+/* ---------- Calculate totals & render summary ---------- */
 function calculateTotal(){
-
+  const itemsArr = [];
   let subtotal = 0;
-  let itemsArr = [];
 
-  for(let y = 1; y <= index; y++){
-    let desc = document.getElementById(`desc_${y}`).value;
-    let unit = Number(document.getElementById(`unit_${y}`).value);
-    let qty = Number(document.getElementById(`qty_${y}`).value);
-
+  for(let y=1; y<=index; y++){
+    const row = document.getElementById('row_' + y);
+    if(!row) continue;
+    const desc = (document.getElementById(`desc_${y}`).value || '').trim();
+    const unit = Number(document.getElementById(`unit_${y}`).value || 0);
+    const qty = Number(document.getElementById(`qty_${y}`).value || 0);
     if(desc && unit > 0 && qty > 0){
-      let amount = unit * qty;
+      const amount = unit * qty;
       subtotal += amount;
-      itemsArr.push({desc, unit, qty, amount});
+      itemsArr.push({ desc, unit, qty, amount });
     }
   }
 
+  const workmanship = Number(document.getElementById('workmanship').value || 0);
+  const vatRate = Number(document.getElementById('vatRate').value || 0);
+  const vatAmount = +(workmanship * (vatRate/100));
+  const totalAmount = subtotal + workmanship + vatAmount;
 
-  let workmanship = Number(document.getElementById("workmanship").value || 0);
-  let vatRate = Number(document.getElementById("vatRate").value || 0);
-  let vatAmount = workmanship * (vatRate / 100);
+  // render summary table
+  let rowsHtml = '';
+  itemsArr.forEach(it => {
+    rowsHtml += `<tr>
+      <td>${escapeHtml(it.desc)}</td>
+      <td>₦${it.unit.toLocaleString()}</td>
+      <td>${it.qty}</td>
+      <td>₦${it.amount.toLocaleString()}</td>
+    </tr>`;
+  });
 
-  let totalAmount = subtotal + workmanship + vatAmount;
+  document.getElementById('summaryTable').innerHTML = `
+    <tr><th>Description</th><th>Unit</th><th>Qty</th><th>Amount</th></tr>
+    ${rowsHtml}
+    <tr><th colspan="3">Workmanship</th><td>₦${workmanship.toLocaleString()}</td></tr>
+    <tr><th colspan="3">VAT</th><td>₦${vatAmount.toLocaleString()}</td></tr>
+    <tr><th colspan="3">Grand Total</th><th>₦${totalAmount.toLocaleString()}</th></tr>
+  `;
 
+  document.getElementById('fullTotal').textContent = `₦${totalAmount.toLocaleString()}`;
 
-  // Customer Info
-  let name = document.getElementById("cname").value;
-  let phone = document.getElementById("cphone").value;
-  let loc = document.getElementById("clocation").value;
+  // set invoice placeholders (real invoice assigned on save)
+  const now = new Date();
+  document.getElementById('dateLabel').textContent = now.toLocaleString();
+  document.getElementById('invoiceLabel').textContent = 'Invoice: (will be created when saved)';
 
-
-  // Save to local storage
-  let entry = {
-    invoice_no: invoiceNo,
-    name,
-    phone,
-    location: loc,
+  // prepare lastCalculated for saving if user chooses
+  lastCalculated = {
     items: itemsArr,
     workmanship,
     vatAmount,
     totalAmount,
-    date: new Date().toLocaleString()
+    date: now.toLocaleString()
   };
 
-  let allQuotes = JSON.parse(localStorage.getItem("quotation_history") || "[]");
-  allQuotes.push(entry);
-  localStorage.setItem("quotation_history", JSON.stringify(allQuotes));
-  localStorage.setItem("invoice_no", invoiceNo + 1);
+  // show result
+  document.getElementById('resultBox').style.display = 'block';
 
-  invoiceNo++;
-
-  renderInvoice(entry);
-}
-
-
-
-function renderInvoice(data){
-
-  let tableRows = "";
-
-  data.items.forEach(item=>{
-    tableRows += `
-      <tr>
-        <td>${item.desc}</td>
-        <td>₦${item.unit.toLocaleString()}</td>
-        <td>${item.qty}</td>
-        <td>₦${item.amount.toLocaleString()}</td>
-      </tr>
-    `;
-  });
-
-  document.getElementById("summaryTable").innerHTML = `
-    <tr>
-      <th>Description</th>
-      <th>Unit</th>
-      <th>Qty</th>
-      <th>Amount</th>
-    </tr>
-    ${tableRows}
-    <tr>
-      <th colspan="3">Workmanship</th>
-      <td>₦${data.workmanship.toLocaleString()}</td>
-    </tr>
-    <tr>
-      <th colspan="3">VAT</th>
-      <td>₦${data.vatAmount.toLocaleString()}</td>
-    </tr>
-    <tr>
-      <th colspan="3">Grand Total</th>
-      <th>₦${data.totalAmount.toLocaleString()}</th>
-    </tr>
-  `;
-
-
-  document.getElementById("fullTotal").innerHTML = `
-      Invoice No: <strong>${data.invoice_no}</strong><br>
-      <span style="font-size:22px;color:#111;">₦${data.totalAmount.toLocaleString()}</span>
-  `;
-
-  document.getElementById("resultBox").style.display = "block";
-
-
-  document.getElementById("waSend").href =
-    "https://wa.me/2348028587310?text="
-    + encodeURIComponent(
-      `Invoice No: ${data.invoice_no}
-Client: ${data.name}
-Phone: ${data.phone}
-Location: ${data.location}
-
-TOTAL: ₦${data.totalAmount.toLocaleString()}`
+  // set WhatsApp link (without invoice number yet)
+  document.getElementById('waSend').href =
+    'https://wa.me/2348028587310?text=' + encodeURIComponent(
+      `Quotation preview — Total: ₦${totalAmount.toLocaleString()}`
     );
+
+  // show print header in DOM (printHeader)
+  document.getElementById('printHeader').style.display = 'block';
 }
 
+/* ---------- Save quotation to localStorage (full details) ---------- */
+/* if redirect === true, open view-quotes.html after saving */
+function saveQuotation(redirect = false){
+  if(!lastCalculated){
+    alert('Please calculate the quotation first before saving.');
+    return;
+  }
 
-function loadHistory(){
+  // invoice number management
+  let currentInvoice = Number(localStorage.getItem(INVOICE_KEY) || 1000);
+  currentInvoice = currentInvoice + 1;
+  localStorage.setItem(INVOICE_KEY, currentInvoice);
 
-  let records = JSON.parse(localStorage.getItem("quotation_history") || "[]");
-  let histDiv = document.getElementById("historyBox");
-  histDiv.style.display = "block";
+  // Build record from form + lastCalculated
+  const record = {
+    invoice_no: currentInvoice,
+    name: (document.getElementById('cname').value || '').trim(),
+    phone: (document.getElementById('cphone').value || '').trim(),
+    location: (document.getElementById('clocation').value || '').trim(),
+    items: lastCalculated.items,
+    workmanship: lastCalculated.workmanship,
+    vatAmount: lastCalculated.vatAmount,
+    totalAmount: lastCalculated.totalAmount,
+    date: lastCalculated.date
+  };
 
-  let html = `
-  <table class="history-table">
-    <tr>
-      <th>Invoice No</th>
-      <th>Customer</th>
-      <th>Date</th>
-      <th>Total</th>
-    </tr>
-  `;
+  // store to quotation_history
+  const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  existing.push(record);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
 
-  records.forEach(r=>{
-    html += `
-      <tr>
-        <td>${r.invoice_no}</td>
-        <td>${r.name}</td>
-        <td>${r.date}</td>
-        <td>₦${r.totalAmount.toLocaleString()}</td>
-      </tr>
-    `;
-  });
+  // update invoice label in UI
+  document.getElementById('invoiceLabel').textContent = 'Invoice: ' + currentInvoice;
 
-  html += "</table>";
+  // update whatsapp link to include invoice & total
+  document.getElementById('waSend').href =
+    'https://wa.me/2348028587310?text=' + encodeURIComponent(
+      `Quotation (Invoice: ${currentInvoice})
+Client: ${record.name}
+Phone: ${record.phone}
+Location: ${record.location}
+Total: ₦${record.totalAmount.toLocaleString()}
+Date: ${record.date}`
+    );
 
-  histDiv.innerHTML = html;
+  alert('Quotation saved (Invoice ' + currentInvoice + ').');
+
+  if(redirect){
+    // open view-quotes.html (user requested)
+    window.location = 'view-quotes.html';
+  }
 }
 
+/* ---------- Helpers ---------- */
+function escapeHtml(s){
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 </script>
-
 
 </body>
 </html>

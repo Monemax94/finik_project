@@ -8,7 +8,9 @@
 
 <style>
 
-/* HEADER EFFECT */
+/* -------------------------------- */
+/* HEADER */
+/* -------------------------------- */
 .site-header{
   position:sticky;
   top:0;
@@ -16,89 +18,69 @@
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 25px;
-  background:rgba(255,255,255,0.28);
+  padding:12px 25px;
+  background:rgba(255,255,255,0.3);
   backdrop-filter:blur(6px);
-  transition:all .4s ease;
+  transition:.35s ease;
 }
-
 .site-header.scrolled{
-  background:#ffffff;
+  background:#fff;
   box-shadow:0 4px 8px rgba(0,0,0,0.25);
 }
 
-
-/* LOGO + TEXT */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
-
 .logo img{
-  height:88px;
-  width:auto;
-  object-fit:contain;
+  height:85px;
 }
-
 .logo span{
-  font-size:30px;
+  font-size:28px;
   font-weight:900;
   color:#000;
-  text-shadow:1px 1px rgba(0,0,0,0.2);
 }
-
 
 /* NAVIGATION */
 .nav-links{
   display:flex;
   gap:22px;
 }
-
 .nav-links a{
   text-decoration:none;
   padding:8px 10px;
+  font-size:16px;
   font-weight:600;
-  transition:all .3s ease;
-  color:#000;
+  color:#111;
+  transition:.3s ease;
 }
-
 .nav-links a:hover{
   color:#c19702;
-  transform:scale(1.05);
 }
-
 .nav-links a.active{
   border-bottom:3px solid #c19702;
   color:#c19702;
 }
-
-/* QUOTE BUTTON */
 .btn-quote{
   background:#c19702;
   border-radius:4px;
   color:#fff !important;
-  padding:8px 14px !important;
+  padding:8px 12px !important;
 }
 
-.btn-quote:hover{
-  background:#000 !important;
-  color:#fff !important;
-}
-
-
-/* MOBILE MENU */
 .menu-toggle{
   display:none;
-  font-size:32px;
+  font-size:33px;
   cursor:pointer;
 }
 
+/* MOBILE NAV */
 @media(max-width:900px){
-  
-  .logo span{
-    font-size:20px;
-  }
+
+  .logo img{height:60px;}
+  .logo span{font-size:22px;}
 
   .nav-links{
     display:none;
@@ -107,29 +89,126 @@
     position:absolute;
     right:0;
     top:100%;
-    padding:15px;
     width:210px;
+    padding:15px;
     border-top:2px solid #c19702;
   }
+  .nav-links.open{display:flex;}
 
-  .nav-links.open{
+  .menu-toggle{display:block;}
+}
+
+/* -------------------------------- */
+/* HERO */
+/* -------------------------------- */
+.hero-small{
+  background:#111;
+  color:white;
+  padding:50px 20px;
+  text-align:center;
+}
+.hero-small h1{
+  margin:0;
+}
+
+/* -------------------------------- */
+/* LAYOUT */
+/* -------------------------------- */
+.container-centered{
+  display:grid;
+  grid-template-columns:250px 1fr 250px;
+  gap:25px;
+  width:92%;
+  margin:auto;
+  padding:35px 0;
+}
+
+.center-box,
+.side-box{
+  background:white;
+  border:1px solid #ddd;
+  border-radius:8px;
+  padding:18px;
+}
+
+.text-block{
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+/* Sidebar links in sky-blue */
+.side-box a{
+  color:#3aaaff !important;
+  font-weight:600;
+}
+.side-box a:hover{
+  color:#0077e6 !important;
+  text-decoration:underline;
+}
+
+/* MOBILE SIDEBAR BUTTON */
+.mobile-toggle{
+  display:none;
+  background:#c19702;
+  color:white;
+  padding:12px;
+  border-radius:6px;
+  margin-bottom:10px;
+  text-align:center;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* MOBILE SIDEBAR SHOW/HIDE */
+@media(max-width:900px){
+
+  .container-centered{
+    grid-template-columns:1fr;
+  }
+
+  .side-box{
+    display:none;
+  }
+  .side-box.show{
     display:block;
   }
 
-  .menu-toggle{
+  .mobile-toggle{
     display:block;
   }
 }
 
-</style>
-</head>
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:15px;
+  background:#000;
+  color:white;
+  margin-top:40px;
+}
 
+/* WHATSAPP BUTTON */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:14px 18px;
+  border-radius:50%;
+  font-size:24px;
+  text-decoration:none;
+  color:white;
+}
+
+</style>
+
+</head>
 <body>
 
 <header class="site-header">
-  
+
   <div class="logo">
-    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <img src="assets/images/logo.jpg">
     <span>Finicky Fixture</span>
   </div>
 
@@ -154,8 +233,11 @@
 
 <section class="container-centered">
 
+  <!-- MOBILE LEFT BUTTON -->
+  <div class="mobile-toggle" onclick="toggleLeft()">Helpful Links ▼</div>
+
   <!-- LEFT SIDEBAR -->
-  <aside class="side-box">
+  <aside class="side-box" id="leftSidebar">
     <h3>Helpful Links</h3>
     <ul class="side-links">
       <li><a href="terms.html">Terms & Conditions</a></li>
@@ -237,11 +319,10 @@
 
     </section>
 
-
     <section>
       <h2>Why Choose Us</h2>
       <ul>
-        <li>Use of premium stainless steel (grades 304 & 316)</li>
+        <li>Use of premium stainless steel (304 & 316)</li>
         <li>Professional welding quality & accurate fitting</li>
         <li>Fast completion timeline</li>
         <li>Highly aesthetic finishing</li>
@@ -252,13 +333,16 @@
   </article>
 
 
+  <!-- MOBILE RIGHT BUTTON -->
+  <div class="mobile-toggle" onclick="toggleRight()">Contact Support ▼</div>
+
   <!-- RIGHT SIDEBAR -->
-  <aside class="side-box">
+  <aside class="side-box" id="rightSidebar">
     <h3>Contact Support</h3>
     <p>📞 08028587310</p>
     <p>💬 08064736155</p>
 
-    <a href="quote.html" class="side-btn">Request Quote →</a>
+    <a href="quote.html" class="link-btn">Request Quote →</a>
 
     <h3>Policy Pages</h3>
     <ul class="side-links">
@@ -278,25 +362,26 @@
 
 <a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
 
-<script src="assets/js/main.js"></script>
 
 <script>
-
-// Toggle Menu
+// NAV MENU
 function toggleMenu(){
   document.getElementById('navLinks').classList.toggle('open');
 }
 
-// Scroll Header Effect
-window.addEventListener("scroll", ()=>{
-  const header = document.querySelector(".site-header");
-  if(window.scrollY > 20){
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
+// LEFT & RIGHT SIDEBAR TOGGLE
+function toggleLeft(){
+  document.getElementById('leftSidebar').classList.toggle('show');
+}
+function toggleRight(){
+  document.getElementById('rightSidebar').classList.toggle('show');
+}
 
+// HEADER SCROLL EFFECT
+window.addEventListener("scroll", ()=>{
+  document.querySelector(".site-header")
+    .classList.toggle("scrolled", window.scrollY > 20);
+});
 </script>
 
 </body>

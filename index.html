@@ -9,7 +9,9 @@
 
 <style>
 
-/* HEADER EFFECT */
+/* ------------------------------ */
+/* HEADER */
+/* ------------------------------ */
 .site-header{
   position:sticky;
   top:0;
@@ -20,64 +22,52 @@
   padding:12px 25px;
   background:rgba(255,255,255,0.3);
   backdrop-filter:blur(6px);
-  transition:all .4s ease;
+  transition:.35s ease;
 }
 
 .site-header.scrolled{
-  background:#ffffff;
+  background:#fff;
   box-shadow:0 4px 8px rgba(0,0,0,0.25);
 }
 
-
-/* LOGO + NAME */
+/* LOGO */
 .logo{
   display:flex;
   align-items:center;
   gap:12px;
 }
-
 .logo img{
-  height:90px;
-  width:auto;
-  object-fit:contain;
+  height:85px;
 }
-
 .logo span{
-  font-size:30px;
+  font-size:28px;
   font-weight:900;
   color:#000;
   letter-spacing:1px;
-  text-shadow:rgba(0,0,0,0.18) 1px 1px;
 }
-
 
 /* NAVIGATION */
 .nav-links{
   display:flex;
   gap:22px;
 }
-
 .nav-links a{
   text-decoration:none;
   padding:8px 10px;
   font-size:16px;
   font-weight:600;
   color:#111;
-  transition:all .3s ease;
+  transition:.3s ease;
 }
-
 .nav-links a:hover{
   color:#c19702;
-  transform:scale(1.05);
 }
-
-/* ACTIVE PAGE */
 .nav-links a.active{
   border-bottom:3px solid #c19702;
   color:#c19702;
 }
 
-/* QUOTE BUTTON */
+/* Quote Button */
 .btn-quote{
   background:#c19702;
   border-radius:4px;
@@ -85,24 +75,16 @@
   padding:8px 12px !important;
 }
 
-.btn-quote:hover{
-  background:#000 !important;
-  color:#fff !important;
-}
-
-
 /* MOBILE NAV */
 .menu-toggle{
   display:none;
-  font-size:32px;
+  font-size:33px;
   cursor:pointer;
 }
 
 @media(max-width:900px){
-  
-  .logo span{
-    font-size:22px;
-  }
+  .logo img{height:60px;}
+  .logo span{font-size:22px;}
 
   .nav-links{
     display:none;
@@ -112,18 +94,153 @@
     right:0;
     top:100%;
     padding:15px;
-    border-top:2px solid #c19702;
     width:210px;
+    border-top:2px solid #c19702;
+  }
+  .nav-links.open{display:flex;}
+
+  .menu-toggle{display:block;}
+}
+
+/* ------------------------------ */
+/* HERO SECTION */
+/* ------------------------------ */
+.hero-small{
+  background:#111;
+  color:#fff;
+  padding:50px 20px;
+  text-align:center;
+}
+.hero-small h1{
+  margin:0;
+  font-size:26px;
+}
+
+/* ------------------------------ */
+/* MAIN LAYOUT */
+/* ------------------------------ */
+.container-centered{
+  display:grid;
+  grid-template-columns:250px 1fr 250px;
+  gap:25px;
+  width:92%;
+  margin:auto;
+  padding:35px 0;
+}
+
+/* Sidebar + main boxes */
+.side-box,
+.center-box{
+  background:white;
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:8px;
+}
+.tight-block{margin-bottom:35px;}
+
+.text-block{
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+/* Services Grid */
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.service-card{
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  text-align:center;
+  background:white;
+}
+
+/* Gallery */
+.gallery-small img{
+  width:100%;
+  border-radius:6px;
+  border:1px solid #ddd;
+}
+
+/* Center links */
+.center-link{text-align:center; margin-top:15px;}
+.link-btn{color:#0661c7; font-weight:bold; text-decoration:none;}
+.link-btn:hover{text-decoration:underline;}
+
+/* ------------------------------ */
+/* MOBILE SIDEBAR SYSTEM */
+/* ------------------------------ */
+.mobile-toggle{
+  display:none;
+  background:#c19702;
+  color:#fff;
+  text-align:center;
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:5px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+@media(max-width:900px){
+
+  .container-centered{
+    grid-template-columns:1fr;
   }
 
-  .nav-links.open{
+  /* Hide both sidebars by default */
+  .side-box{
+    display:none;
+  }
+
+  .side-box.show{
     display:block;
   }
 
-  .menu-toggle{
+  .mobile-toggle{
     display:block;
+  }
+
+  .grid-3{
+    grid-template-columns:1fr;
   }
 }
+
+/* ------------------------------ */
+/* FOOTER */
+/* ------------------------------ */
+footer{
+  background:#000;
+  color:#fff;
+  padding:15px;
+  text-align:center;
+  margin-top:40px;
+}
+
+/* WhatsApp Button */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 18px;
+  border-radius:50%;
+  font-size:24px;
+  text-decoration:none;
+}
+.side-box a {
+  color: #3aaaff !important;   /* sky blue */
+  font-weight: 600;
+}
+
+.side-box a:hover {
+  color: #0077e6 !important;   /* darker sky blue */
+  text-decoration: underline;
+}
+
 
 </style>
 
@@ -132,9 +249,9 @@
 <body>
 
 <header class="site-header">
-  
+
   <div class="logo">
-    <img src="assets/images/logo.jpg" alt="Finicky Fixture Logo">
+    <img src="assets/images/logo.jpg">
     <span>Finicky Fixture</span>
   </div>
 
@@ -147,6 +264,8 @@
     <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
     <a href="quote.html" class="btn-quote">Request Quote</a>
+	<a href="costing.html">Costing Calculator</a>
+
   </nav>
 
 </header>
@@ -159,8 +278,11 @@
 
 <section class="container-centered">
 
+  <!-- MOBILE TOGGLE BUTTON -->
+  <div class="mobile-toggle" onclick="toggleLeft()">Quick Access ▼</div>
+
   <!-- LEFT SIDEBAR -->
-  <aside class="side-box">
+  <aside class="side-box" id="leftSidebar">
     <h3>Quick Access</h3>
     <ul class="side-links">
       <li><a href="terms.html">Terms & Conditions</a></li>
@@ -177,35 +299,12 @@
   </aside>
 
 
-  <!-- MAIN CONTENT -->
-  <article class="center-box">
+  <!-- MAIN CONTENT --> <article class="center-box"> <section class="tight-block"> <h2>Welcome to Finicky Fixture</h2> <p class="text-block"> We design, fabricate and install stainless steel handrails, balcony railings, gates, supports and general steel fittings for homes and commercial structures. We offer a wide range of stainless steel banisters for commercial as well as individual purpose. We use advanced technology, several types of high-grade steel i.e. stainless steel, carbon steel, mild steel and nickel alloy to manufacture stainless steel products and, with the availability of the customized designs, sizes and, dimensions, we provide all the needs of our customers from across Nigeria. Our stainless steel balustrades are valued and used by various interior designers, construction contractors, architects, and builders in shopping malls, villas, commercial buildings, offices, and homes. </p> <p class="text-block"> Finicky Fixture earned honor & fame in the manufacturing of stainless steel and Wrought Iron Products, which has world-class accuracy, quality, finishing, and strength. We build our products with high-quality raw steel material contributed by our trusted vendors. The use of high-quality material not only provides the durability of our products but also makes those resistant to decomposition.With our advanced production techniques, facilities, we reach the ever-increasing needs of clients in the construction industry. Providing customized services, we have always preserved the quality of products and have delivered the consignments on time. </p> </section>
 
-    <section class="tight-block">
-      <h2>Welcome to Finicky Fixture</h2>
-      <p class="text-block">
-        We design, fabricate and install stainless steel handrails, balcony railings, gates,
-        supports and general steel fittings for homes and commercial structures. We offer a 
-		wide range of stainless steel banisters for commercial as well as individual purpose. 
-		We use advanced technology, several types of high-grade steel i.e. stainless steel, 
-		carbon steel, mild steel and nickel alloy to manufacture stainless steel products and, 
-		with the availability of the customized designs, sizes and, dimensions, we provide all 
-		the needs of our customers from across Nigeria. Our stainless steel balustrades are valued 
-		and used by various interior designers, construction contractors, architects, and builders 
-		in shopping malls, villas, commercial buildings, offices, and homes.
-      </p>
-	  <p class="text-block">
-	  Finicky Fixture earned honor & fame in the manufacturing of stainless steel and Wrought Iron 
-	  Products, which has world-class accuracy, quality, finishing, and strength. We build our products 
-	  with high-quality raw steel material contributed by our trusted vendors. The use of high-quality 
-	  material not only provides the durability of our products but also makes those resistant to 
-	  decomposition.With our advanced production techniques, facilities, we reach the ever-increasing 
-	  needs of clients in the construction industry. Providing customized services, we have always preserved 
-	  the quality of products and have delivered the consignments on time.
-	  </p>
-    </section>
 
     <section class="tight-block">
       <h2>Our Top Services</h2>
+
       <div class="grid-3">
         <div class="service-card">
           <h3>Handrails</h3>
@@ -247,18 +346,9 @@
     <section class="tight-block">
       <h2>Visit Our Offices</h2>
 
-      <p>
-        <strong>Head Office:</strong><br>
-        235, Ikotun Road, Lagos.
-      </p>
-
+      <p><strong>Head Office:</strong><br>235, Ikotun Road, Lagos.</p>
       <p><strong>Phone:</strong> 08028587310, 08064736155</p>
-
-      <p>
-        <strong>Branch Office:</strong><br>
-        No. 1 Ambrose Okakwu Street, Off DLA Road,<br>
-        Asaba — Delta State.
-      </p>
+      <p><strong>Branch Office:</strong><br>No. 1 Ambrose Okakwu Street, Asaba — Delta State.</p>
 
       <p class="center-link">
         <a href="contact.html" class="link-btn">Contact Us →</a>
@@ -268,13 +358,16 @@
   </article>
 
 
+  <!-- MOBILE TOGGLE BUTTON -->
+  <div class="mobile-toggle" onclick="toggleRight()">Talk to Us ▼</div>
+
   <!-- RIGHT SIDEBAR -->
-  <aside class="side-box">
+  <aside class="side-box" id="rightSidebar">
     <h3>Talk to Us</h3>
     <p>📞 08028587310</p>
     <p>💬 08064736155</p>
 
-    <a href="quote.html" class="side-btn">Request Quote →</a>
+    <a href="quote.html" class="link-btn">Request Quote →</a>
 
     <h3>Important Pages</h3>
     <ul class="side-links">
@@ -282,7 +375,6 @@
       <li><a href="installation.html">Installation Rules</a></li>
       <li><a href="measurement.html">Charges Policy</a></li>
     </ul>
-
   </aside>
 
 </section>
@@ -292,28 +384,28 @@
   <p>© 2025 Finicky Fixture Nigeria Limited | Designed by Osaji Peters - 08032006306.</p>
 </footer>
 
-
 <a href="https://wa.me/2348028587310" class="whatsapp-float">💬</a>
 
-<script src="assets/js/main.js"></script>
 
 <script>
-
-// Toggle menu
+// NAV MENU TOGGLE
 function toggleMenu(){
   document.getElementById('navLinks').classList.toggle('open');
 }
 
-// Header scroll transition
-window.addEventListener("scroll", ()=>{
-  const header = document.querySelector(".site-header");
-  if(window.scrollY > 20){
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
+// SIDEBAR TOGGLES
+function toggleLeft(){
+  document.getElementById('leftSidebar').classList.toggle('show');
+}
+function toggleRight(){
+  document.getElementById('rightSidebar').classList.toggle('show');
+}
 
+// HEADER SCROLL EFFECT
+window.addEventListener("scroll", ()=>{
+  document.querySelector(".site-header")
+    .classList.toggle("scrolled", window.scrollY > 20);
+});
 </script>
 
 </body>
